@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gestión de Clases - Sistema Escolar</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#5048e5",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#121121",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .sidebar-active {
+            background-color: rgba(80, 72, 229, 0.1);
+            color: #5048e5;
+            border-right: 3px solid #5048e5;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 font-display">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar -->
+<aside class="w-64 bg-white dark:bg-background-dark border-r border-slate-200 dark:border-slate-800 flex flex-col">
+<div class="p-6 flex items-center gap-3">
+<div class="bg-primary rounded-lg p-2 text-white">
+<span class="material-symbols-outlined">school</span>
+</div>
+<div>
+<h1 class="text-slate-900 dark:text-white text-base font-bold leading-tight">Sistema Escolar</h1>
+<p class="text-slate-500 text-xs font-normal">Administrador</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1 mt-4">
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-50 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Panel Principal</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-50 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-sm font-medium">Estudiantes</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-50 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">psychology</span>
+<span class="text-sm font-medium">Profesores</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 sidebar-active rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">book</span>
+<span class="text-sm font-medium">Clases</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-50 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-sm font-medium">Horarios</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-slate-600 hover:bg-slate-50 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+<span class="text-sm font-medium">Reportes</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<button class="flex w-full items-center justify-center gap-2 px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-bold transition-colors">
+<span class="material-symbols-outlined text-sm">logout</span>
+<span>Cerrar Sesión</span>
+</button>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col overflow-hidden">
+<!-- Header -->
+<header class="h-16 bg-white dark:bg-background-dark border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-8 shrink-0">
+<div class="flex items-center gap-2">
+<span class="text-slate-400 text-sm">Inicio</span>
+<span class="material-symbols-outlined text-slate-400 text-xs">chevron_right</span>
+<span class="text-slate-900 dark:text-white text-sm font-semibold">Gestión de Clases</span>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative">
+<span class="material-symbols-outlined text-slate-500 cursor-pointer p-2 hover:bg-slate-100 rounded-full transition-colors">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 border-2 border-white rounded-full"></span>
+</div>
+<div class="flex items-center gap-3 pl-4 border-l border-slate-200 h-8">
+<div class="text-right">
+<p class="text-sm font-semibold text-slate-900 leading-none">Carlos R.</p>
+<p class="text-xs text-slate-500">Director Académico</p>
+</div>
+<img alt="Admin Avatar" class="w-10 h-10 rounded-full border border-slate-200" data-alt="Profile picture of the school administrator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD0d8KnYUnxdML5sDnsFIWgxoHGCj_Nu46Kfg5-d65G3OhBBzpmSCSB0BshdDSbviVJmE866-MhG8SN5LaOt2TspNwM2NCfFPA_3Hiyk3YHMs7SbgEwTTSdbQ44Qd5CdKhC2vfSwGf9GLg5N35Q2vId_yt_4kuJnRQSe9Vta5fEFCAHC2RNZQr8J_VZmKlUAzz2Wkvxx5fXClUNwwmDSu_iDaFyovcxnq6G1Tsx-jC2_fNw65yA9GUtARozSdbaMZeyLugdAkxU"/>
+</div>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-8">
+<!-- Action Bar -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-8">
+<div>
+<h2 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Gestión de Clases</h2>
+<p class="text-slate-500 mt-1">Administre las asignaturas y cursos de la institución educativa.</p>
+</div>
+<button class="flex items-center justify-center gap-2 bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-lg font-bold shadow-lg shadow-primary/20 transition-all active:scale-95 whitespace-nowrap">
+<span class="material-symbols-outlined">add</span>
+<span>Crear Nueva Clase</span>
+</button>
+</div>
+<!-- Filters & Search -->
+<div class="bg-white dark:bg-background-dark rounded-xl border border-slate-200 dark:border-slate-800 p-4 mb-8 flex flex-wrap gap-4 items-center">
+<div class="flex-1 min-w-[280px]">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-50 border-slate-200 rounded-lg focus:ring-primary focus:border-primary text-sm" placeholder="Buscar asignatura por nombre o código..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<select class="bg-slate-50 border-slate-200 rounded-lg text-sm px-4 py-2 focus:ring-primary focus:border-primary min-w-[160px]">
+<option value="">Todos los Grados</option>
+<option value="9">9º Grado</option>
+<option value="10">10º Grado</option>
+<option value="11">11º Grado</option>
+</select>
+<select class="bg-slate-50 border-slate-200 rounded-lg text-sm px-4 py-2 focus:ring-primary focus:border-primary min-w-[180px]">
+<option value="">Departamentos</option>
+<option value="ciencias">Ciencias Exactas</option>
+<option value="artes">Artes y Humanidades</option>
+<option value="idiomas">Idiomas</option>
+</select>
+<button class="p-2 border border-slate-200 rounded-lg hover:bg-slate-50 text-slate-600 transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+</button>
+</div>
+</div>
+<!-- Course Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+<!-- Card: Matemáticas -->
+<div class="group bg-white dark:bg-background-dark rounded-xl border border-slate-200 dark:border-slate-800 hover:shadow-xl hover:shadow-slate-200/50 transition-all border-l-4 border-l-blue-500 overflow-hidden">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-blue-50 text-blue-600 p-2 rounded-lg">
+<span class="material-symbols-outlined">calculate</span>
+</div>
+<div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">edit</span></button>
+<button class="p-1.5 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">visibility</span></button>
+</div>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Matemáticas Avanzadas</h3>
+<p class="text-xs text-slate-400 font-medium uppercase tracking-wider mb-4">CÓDIGO: MAT-101</p>
+<div class="space-y-3">
+<div class="flex items-center gap-2 text-sm text-slate-600">
+<span class="material-symbols-outlined text-sm text-slate-400">grade</span>
+<span>10º Grado - Sección A</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-slate-600">
+<span class="material-symbols-outlined text-sm text-slate-400">account_balance</span>
+<span>Ciencias Exactas</span>
+</div>
+</div>
+</div>
+<div class="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+<div class="flex -space-x-2">
+<img alt="Student" class="w-6 h-6 rounded-full border-2 border-white" data-alt="Small avatar of a student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMKvvhxhc3y48dBDkI5W4VBbbtJygtREVKoRVWw_dTxdLGhElqcJ9AlYhA-ajREiuSsxeIeBT33cIrAZ6b7XKuqVpPN1NtpsBleDkBUWua3R8lmTehjZWVT-EIC59Titk1ISg5MyDfDYinqmI0Nk5TUmCWK0x1Y9_m9Agwig2vrMlawAEszPKoGHUmojUTT3Bi6rhfQU5UF4ufJi2c2MA1bvERI-M6x_9oe8JHASifSwXO4nXrQn0v79HN-4K4hpuMX4jsB8yl"/>
+<img alt="Student" class="w-6 h-6 rounded-full border-2 border-white" data-alt="Small avatar of another student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFnCcJWnnh1wUrry7UFyvTu1HPabqaYMf72iBxheI8jQ6514z5XWb_08GnsQ7khkCrMkaBU8Hibr8xrkcojvJSzZ2p0HLgmFmUZkkud7ZZD2MFJvfmhJA16D8aF58mPhimE5Y7uH09RyBd5VIJv2HDbfG4MSeJTXoZs3oPpU7FfmKVSeGSW4JOmSnLbpGZyLPa_ihLtGdMb2pxTF8b3EDDn91kCrmcz_9FIuVLM7wDjn8wMd-5jhENDrwHqsXjU5CtWRpxfsAa"/>
+<img alt="Student" class="w-6 h-6 rounded-full border-2 border-white" data-alt="Small avatar of a third student" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXW97nTSb049AozU3FaFZKSLwRu6l5z1qGq0Sdp8TvFC_bRMGZR747B36JxeQe3UdJKp5-6gZoJ0JsVMRCyTTZrW_ZXQWQ0tVi89GxA7r_deHbaBQk4F7rTxq_XZmIdQPo18PIaLybLe-9Kw56fgZo4gyI5dOnMX5idZn1mZyS3T_2vC6JlPnTN135x0s-8qpML-lt0zr93UavHQoEU_GZTmDu_ggWXwolI95IRGbFM1qrpoa0KpTzg_CI5GVdn9xlZa6nWGc8"/>
+<div class="w-6 h-6 rounded-full bg-slate-200 border-2 border-white flex items-center justify-center text-[8px] font-bold text-slate-500">+12</div>
+</div>
+<span class="text-xs font-semibold text-slate-500 italic">Prof. Ricardo Sosa</span>
+</div>
+</div>
+<!-- Card: Física -->
+<div class="group bg-white dark:bg-background-dark rounded-xl border border-slate-200 dark:border-slate-800 hover:shadow-xl hover:shadow-slate-200/50 transition-all border-l-4 border-l-blue-500 overflow-hidden">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-blue-50 text-blue-600 p-2 rounded-lg">
+<span class="material-symbols-outlined">experiment</span>
+</div>
+<div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">edit</span></button>
+<button class="p-1.5 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">visibility</span></button>
+</div>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Física Mecánica</h3>
+<p class="text-xs text-slate-400 font-medium uppercase tracking-wider mb-4">CÓDIGO: FIS-202</p>
+<div class="space-y-3">
+<div class="flex items-center gap-2 text-sm text-slate-600">
+<span class="material-symbols-outlined text-sm text-slate-400">grade</span>
+<span>11º Grado - Sección B</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-slate-600">
+<span class="material-symbols-outlined text-sm text-slate-400">account_balance</span>
+<span>Ciencias Exactas</span>
+</div>
+</div>
+</div>
+<div class="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+<div class="flex -space-x-2">
+<img alt="Student" class="w-6 h-6 rounded-full border-2 border-white" data-alt="Student avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKCTkrjA6Oeg2343ogrUnO1cYBwdIAgM-efghleLKlN4sAzQ8955eGE4I4SS1kvUzOt-Ltit27Uh5Me7zw5ugGj3B9p3Duz4YRDBWjPGZJSjVRswnaPJhDt0pAywquFbYk7Brt327zXNFEnJFzigBIB4NjHPyX0eagdJ_zJcf-3f0TQa8R_ba8h7beeeiGl2JJFCEEynlnwpck03xRshUIe6xenoWavSdcmHvbJqP25veNsWXzP-uF75OwAvS0WgBchAL_ugOs"/>
+<img alt="Student" class="w-6 h-6 rounded-full border-2 border-white" data-alt="Student avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAC64zrTLpaqrLML8biv5lPU4Nqc4zpvdr_FsNGJIyhB29slV417ZyctzVWMLRh5B3jYmdrul8LBEOKD6eHSiOLbejcCV_ZfVBUUq8AL8vqmVCPuRye_qMgvQ5ILlm9v7ugpiGuARHt7pf6Xje6cRBXPrTAno_gtECMnPl9DeC0B6uJdffYvq5id38yIyx3234PuL3_8yCFwMOLDEHB7aZH9N8xvaVZZFxFiMNhM_AfT00vd9AjP26aFdYw2O9byWO6tzUTry9-"/>
+<div class="w-6 h-6 rounded-full bg-slate-200 border-2 border-white flex items-center justify-center text-[8px] font-bold text-slate-500">+8</div>
+</div>
+<span class="text-xs font-semibold text-slate-500 italic">Prof. Elena Maza</span>
+</div>
+</div>
+<!-- Card: Historia del Arte -->
+<div class="group bg-white dark:bg-background-dark rounded-xl border border-slate-200 dark:border-slate-800 hover:shadow-xl hover:shadow-slate-200/50 transition-all border-l-4 border-l-emerald-500 overflow-hidden">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-emerald-50 text-emerald-600 p-2 rounded-lg">
+<span class="material-symbols-outlined">palette</span>
+</div>
+<div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">edit</span></button>
+<button class="p-1.5 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">visibility</span></button>
+</div>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Historia del Arte</h3>
+<p class="text-xs text-slate-400 font-medium uppercase tracking-wider mb-4">CÓDIGO: ART-050</p>
+<div class="space-y-3">
+<div class="flex items-center gap-2 text-sm text-slate-600">
+<span class="material-symbols-outlined text-sm text-slate-400">grade</span>
+<span>9º Grado - General</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-slate-600">
+<span class="material-symbols-outlined text-sm text-slate-400">account_balance</span>
+<span>Artes y Humanidades</span>
+</div>
+</div>
+</div>
+<div class="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+<div class="flex -space-x-2">
+<img alt="Student" class="w-6 h-6 rounded-full border-2 border-white" data-alt="Student avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4ZjwNVaAFgzrUFQjq2wF9S33l3hTAVvJytEaCOyeKiIPcTxE0-ng7T35fwtvaQXSSNpD1w7ZbhZJrXKsc2-cx0DeCZ-1F8jBcbbhIZGLegUjsz9xxgy-fXK46B2xG6gp2Ud1dxrPQ2Uy8Y_KHwo9yUsDDrsa1dNz7DQRLW-_NoZhPTNw4ckpNxMz9aOsJYUBEdRXWEAKEAhMPNX8UkmCrMoy8u3Uec7uOLi6xKQoN5QmbuO2cVrfKRGzMvHGPzrbH_3Cn6XsV"/>
+<img alt="Student" class="w-6 h-6 rounded-full border-2 border-white" data-alt="Student avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKnr5ESYB9waEeQgJMh9VwZqnsPJBAYhxoYFaHv99g5F78pJMwWWsaYW95OTkvNexow0ZFgsfDmS-i7SIgsoidxSXp5FhAl6b4YOG3TpTjhzyt4hdC0aUNWdf6pb8HA5YtNFUjsm6GaqTdMKd6g2ZZkA-gWwGEB55GC5AXkjC_bNQLMqxw753sw9clWU1CIp77KMhH1fgqUbF1SH6p26Xy1PnfFhLjnqD2hCQpN0kCVXWEdURkyIZB9DgSccqwJiUkcb5lKAGj"/>
+<img alt="Student" class="w-6 h-6 rounded-full border-2 border-white" data-alt="Student avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAz-9pjYsPziSNkJbCBvrc2FvdyLejvLBaE--qyt-F9NwzmGRSvuVvMl2aTqPam17-CugZGQO9v1kHVsDtxLJpceloQWerOTyzOhgOFTS1YkCc4EC9RlLewWQvjH56l6kHCrgmYH7DyOLLHXIEPg5COi1SAOfPtnR4NGsIZ2zriYxJuY_Y-WmUDHpzYFZU7bNVPS8HRC_77gfsM5Vl5yRT-YEjAJwxwFfFl8Avd38fzJ7G2qiCyg2ZtybJqOPJAkyR4n8KsFcKO"/>
+</div>
+<span class="text-xs font-semibold text-slate-500 italic">Prof. Marco Aurelio</span>
+</div>
+</div>
+<!-- Card: Literatura -->
+<div class="group bg-white dark:bg-background-dark rounded-xl border border-slate-200 dark:border-slate-800 hover:shadow-xl hover:shadow-slate-200/50 transition-all border-l-4 border-l-emerald-500 overflow-hidden">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-emerald-50 text-emerald-600 p-2 rounded-lg">
+<span class="material-symbols-outlined">auto_stories</span>
+</div>
+<div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">edit</span></button>
+<button class="p-1.5 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">visibility</span></button>
+</div>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Literatura Universal</h3>
+<p class="text-xs text-slate-400 font-medium uppercase tracking-wider mb-4">CÓDIGO: LIT-102</p>
+<div class="space-y-3">
+<div class="flex items-center gap-2 text-sm text-slate-600">
+<span class="material-symbols-outlined text-sm text-slate-400">grade</span>
+<span>10º Grado - Sección A</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-slate-600">
+<span class="material-symbols-outlined text-sm text-slate-400">account_balance</span>
+<span>Artes y Humanidades</span>
+</div>
+</div>
+</div>
+<div class="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+<div class="flex -space-x-2">
+<img alt="Student" class="w-6 h-6 rounded-full border-2 border-white" data-alt="Student avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCSeWywbLFBNyWGIjarTVjpf17XKIvMk-WOhpzcSuzpBKAce64SDpQyvh0hq7BdbYe9gB1eXx1gQWQG3Rnv14zN4CFAoEQvEL87_XWCqvZDMB9f0nQkv4S1m9zuaZbpEwSvLT9XiUnpQYOzjZH0OuRaoB7zh4liC-ij1ooOoKHuRg7HtrAiwENggLhkleMFOFgR3oKL50bj1p0UMuQZwrF4qQ94GZa39dG1xF1vs74Ohx2eIjVrfR-_PRrPe9GGPQeAU9NjXVho"/>
+<div class="w-6 h-6 rounded-full bg-slate-200 border-2 border-white flex items-center justify-center text-[8px] font-bold text-slate-500">+15</div>
+</div>
+<span class="text-xs font-semibold text-slate-500 italic">Prof. Lucía Campos</span>
+</div>
+</div>
+<!-- Card: Inglés -->
+<div class="group bg-white dark:bg-background-dark rounded-xl border border-slate-200 dark:border-slate-800 hover:shadow-xl hover:shadow-slate-200/50 transition-all border-l-4 border-l-amber-500 overflow-hidden">
+<div class="p-6">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-amber-50 text-amber-600 p-2 rounded-lg">
+<span class="material-symbols-outlined">translate</span>
+</div>
+<div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-1.5 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">edit</span></button>
+<button class="p-1.5 text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined text-xl">visibility</span></button>
+</div>
+</div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-1">Inglés Intermedio B2</h3>
+<p class="text-xs text-slate-400 font-medium uppercase tracking-wider mb-4">CÓDIGO: ENG-200</p>
+<div class="space-y-3">
+<div class="flex items-center gap-2 text-sm text-slate-600">
+<span class="material-symbols-outlined text-sm text-slate-400">grade</span>
+<span>11º Grado - Avanzado</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-slate-600">
+<span class="material-symbols-outlined text-sm text-slate-400">account_balance</span>
+<span>Idiomas</span>
+</div>
+</div>
+</div>
+<div class="px-6 py-4 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
+<div class="flex -space-x-2">
+<img alt="Student" class="w-6 h-6 rounded-full border-2 border-white" data-alt="Student avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvzAGGE_Y5w7_3e7j-GaM6qrAx73m79toxOi1FHRpjmUyA8s9MV7IwNGE84xCP1BXobu2rvrXQ0SqqjFMwe6FguaBxdnzpRZUbkd5Pq5imlbYnZbmaEv-4pOJfWqGZPUHlKdscmiPMKae18Uja7YsX64W11wA0MK8JN1hrPOeOJvAcP0QCn1LcwdR4yLFj3XFILlGmTSM1v3E3qqIiGaxD1E095YNd9-S6EavN6-HQkkMXP6W0lRirOwSPUuZLsTOsG-2w-D4m"/>
+<img alt="Student" class="w-6 h-6 rounded-full border-2 border-white" data-alt="Student avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDffesnpyx65Y5dAbFpXvqGC3nhMDRr0ErLgs28nVEX2tuM7_ls9dwrusl-L53KP8noGgBwvllOx1d5Wo5Rr_jRz3uBwkmFrLDPt4flR3AcD4iDSeW_08dscWZcT0X3sdDNTM6ow8ZaC17TmIF1sihPYJrN04MyQ9PkpEP64CC98B4jGMp1HPdPRjFHrmetwMopJxUxSIxOn0BGjTgfTifCEX1mEALNkixla0WIJHmATBaU-rcnBjJZc2Ny0y0auReCxqlCgILO"/>
+</div>
+<span class="text-xs font-semibold text-slate-500 italic">Prof. James Wilson</span>
+</div>
+</div>
+<!-- Add New Subject Card Style -->
+<div class="group border-2 border-dashed border-slate-200 dark:border-slate-800 rounded-xl flex flex-col items-center justify-center p-8 hover:border-primary hover:bg-primary/5 transition-all cursor-pointer">
+<div class="w-12 h-12 rounded-full bg-slate-100 group-hover:bg-primary/10 flex items-center justify-center text-slate-400 group-hover:text-primary mb-4 transition-colors">
+<span class="material-symbols-outlined text-3xl">add_circle</span>
+</div>
+<p class="text-sm font-bold text-slate-500 group-hover:text-primary">Agregar Asignatura</p>
+<p class="text-xs text-slate-400 mt-1">Configure una nueva clase para este periodo</p>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

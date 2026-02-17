@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gestión de Salones - Colegio Central</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#5048e5",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#121121",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-size: 24px; }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-[#0f0e1b] dark:text-white">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 border-r border-[#e8e8f3] dark:border-white/10 bg-white dark:bg-background-dark flex flex-col">
+<div class="p-6 flex flex-col gap-8 h-full">
+<!-- Profile Header -->
+<div class="flex items-center gap-3">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 ring-2 ring-primary/20" data-alt="User administrator profile avatar" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDeScImzWhhFtbvPyRCk5kCHq4rsDUg4NApN7IWLcBmFmNehIAgKThhFCYd8Wf6TWCqAUg6j2yH0A_ULcCEHxqNvyDqYW8GfqRuxxaUmhxX21nA4L6ureWDl6DSQ7NiNBS1f-IWSctDNtxvv80Ch8ewbzwyMa41rx1AqpVGgbx121WOAIdbtNrESmNs7GxTpfY4PuvgzdMy-1ZP1yC8Qs1l4QaPfHV7uh39jnIf2dfhh7PiYb2Vv7FoIDKnPkBjSo3UeRnTnEiF");'></div>
+<div class="flex flex-col">
+<h1 class="text-[#0f0e1b] dark:text-white text-sm font-bold leading-tight">Colegio Central</h1>
+<p class="text-primary text-xs font-medium">Admin Sistema</p>
+</div>
+</div>
+<!-- Nav Links -->
+<nav class="flex flex-col gap-1 flex-1">
+<a class="flex items-center gap-3 px-3 py-2.5 text-[#545095] dark:text-gray-400 hover:bg-primary/5 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-[#545095] dark:text-gray-400 hover:bg-primary/5 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-sm font-medium">Estudiantes</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-[#545095] dark:text-gray-400 hover:bg-primary/5 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-sm font-medium">Profesores</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">school</span>
+<span class="text-sm font-bold">Gestión de Salones</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 text-[#545095] dark:text-gray-400 hover:bg-primary/5 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-sm font-medium">Horarios</span>
+</a>
+</nav>
+<!-- Footer Sidebar -->
+<div class="pt-4 border-t border-[#e8e8f3] dark:border-white/10">
+<a class="flex items-center gap-3 px-3 py-2 text-[#545095] dark:text-gray-400" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Configuración</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-y-auto">
+<!-- Header -->
+<header class="h-16 border-b border-[#e8e8f3] dark:border-white/10 bg-white dark:bg-background-dark px-8 flex items-center justify-between sticky top-0 z-10">
+<div class="flex items-center gap-6 flex-1">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">meeting_room</span>
+<h2 class="text-lg font-bold tracking-tight">Gestión de Salones</h2>
+</div>
+<!-- Top Search -->
+<div class="max-w-md w-full relative group">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within:text-primary transition-colors">search</span>
+<input class="w-full pl-11 pr-4 py-2 bg-background-light dark:bg-white/5 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Buscar por nombre o número de aula..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 transition-all shadow-sm">
+<span class="material-symbols-outlined text-[20px]">add</span>
+                        Añadir Nueva Aula
+                    </button>
+<div class="h-6 w-[1px] bg-[#e8e8f3] dark:bg-white/10 mx-2"></div>
+<button class="p-2 text-gray-500 hover:bg-gray-100 dark:hover:bg-white/5 rounded-full relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-background-dark"></span>
+</button>
+<div class="size-8 rounded-full overflow-hidden border border-gray-200">
+<img class="w-full h-full object-cover" data-alt="Small admin thumbnail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCwMzf4YtaK9_7ySi9_uxFSsM9zLYsw0XFjZFyJRl8hEWJ0jxUmZEVLDhRjS2aZeHsUkeIJeWI1jtAq-7LdSmRXa8FEXqV-jp21E7LHZsAsn_f_M8sGGMUh4kYKmvVHwH3pSfOSMNifvxD5a4tzvTsOCQCWK9LgyGJv0uyV3Jecy5bR6-8a0ZSuXz1fAvSNbQWrxv6Y8xAayQhsHSTqGJQNWmwieixbYZeFNZo0E5Tiu7ue42MlUJVmK0eNlRSlkgXnIUVVIWH2"/>
+</div>
+</div>
+</header>
+<!-- Content -->
+<div class="p-8 space-y-8">
+<!-- Filter Chips -->
+<div class="flex items-center gap-2">
+<button class="px-5 py-1.5 bg-primary text-white rounded-full text-sm font-medium">Todos</button>
+<button class="px-5 py-1.5 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:border-primary/50 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300 transition-colors">Salones de Clase</button>
+<button class="px-5 py-1.5 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:border-primary/50 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300 transition-colors">Laboratorios</button>
+<button class="px-5 py-1.5 bg-white dark:bg-white/5 border border-gray-200 dark:border-white/10 hover:border-primary/50 rounded-full text-sm font-medium text-gray-600 dark:text-gray-300 transition-colors">Espacios Deportivos</button>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Card 1: Classroom -->
+<div class="bg-white dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/10 overflow-hidden group hover:shadow-lg transition-all duration-300">
+<div class="relative h-40">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Modern bright classroom with chairs and desks" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDVgevsg1Uj-yRRvP83seXpwxWC5oCZanJ1z9nfU2aHeHc268qyp6iA3myy1gYJhMPrMUpdUG6Dmdq0STNnOFW_iglkyYdZqx6P9_ny1i5aczVYIOlWT25_2mzAfLYnBFwqzEGZu3ofRQ893GPKfDGbZi_O0PneZ-T5Unu84qkLDSgmHCWAntAzznLewtiBpHltgcYDwA6zVoVwt2OF3VJIBCoYi2i7uHdz1ylgqeKUPFWOVoYv2dszhoDZOpuO0Rrp6DTuqM9e');"></div>
+<div class="absolute top-3 left-3">
+<span class="bg-green-100 text-green-700 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">Disponible</span>
+</div>
+<div class="absolute top-3 right-3">
+<button class="p-1.5 bg-white/90 rounded-lg text-gray-700 hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</div>
+<div class="p-5">
+<h3 class="text-base font-bold mb-1">Aula 101 - Edificio A</h3>
+<p class="text-xs text-gray-500 dark:text-gray-400 mb-4">Planta Baja, Sector Norte</p>
+<div class="space-y-3">
+<div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+<span class="material-symbols-outlined text-primary text-[20px]">groups</span>
+<span>Capacidad: 30 Estudiantes</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+<span class="material-symbols-outlined text-primary text-[20px]">videocam</span>
+<span>Proyector, Aire Acondicionado</span>
+</div>
+</div>
+<button class="w-full mt-6 py-2 bg-primary/10 text-primary text-sm font-bold rounded-lg hover:bg-primary hover:text-white transition-all">
+                                Ver Horario
+                            </button>
+</div>
+</div>
+<!-- Card 2: Lab -->
+<div class="bg-white dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/10 overflow-hidden group hover:shadow-lg transition-all duration-300">
+<div class="relative h-40">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Chemistry laboratory with test tubes and safety equipment" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDaPtrXPEmAj2KQBIy-D9eEe_HbVRVEqtxKhcpWOpcbljAmeBkXeFHwZFV2O7r3fAB8CO0RUEXPqqke9hx2TT5iFjCcQcNSbOymTBYV3h93XZlTGrf-mg_KZWZbFrMcXDVQm9eZMIig-NKp6247PMD1w6Xbx6MDnJ7elW5FvsCIb4QYFBPc14eF9mHXd8IY8I_6LZLqkF7wtBBG4MDMHlnUKVcd8mhd_PFht2kC9lqiz60QajiUwTQlT_mAKp7MUYt3nHwo1YLl');"></div>
+<div class="absolute top-3 left-3">
+<span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">En Uso</span>
+</div>
+<div class="absolute top-3 right-3">
+<button class="p-1.5 bg-white/90 rounded-lg text-gray-700 hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</div>
+<div class="p-5">
+<h3 class="text-base font-bold mb-1">Laboratorio de Química</h3>
+<p class="text-xs text-gray-500 dark:text-gray-400 mb-4">Edificio de Ciencias, Lab 3</p>
+<div class="space-y-3">
+<div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+<span class="material-symbols-outlined text-primary text-[20px]">groups</span>
+<span>Capacidad: 25 Estudiantes</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+<span class="material-symbols-outlined text-primary text-[20px]">biotech</span>
+<span>Kits Lab, Campana Extracción</span>
+</div>
+</div>
+<button class="w-full mt-6 py-2 bg-primary/10 text-primary text-sm font-bold rounded-lg hover:bg-primary hover:text-white transition-all">
+                                Ver Horario
+                            </button>
+</div>
+</div>
+<!-- Card 3: Sports -->
+<div class="bg-white dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/10 overflow-hidden group hover:shadow-lg transition-all duration-300">
+<div class="relative h-40">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Indoor basketball gymnasium with polished wooden floor" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDG7-jBsIld22AcPrcN7OkDUg9eGxs7nv8i1JogXS1lUrk9qIj2RbQW_mG0K-n3hC5TAMKFywgDm5Fbh-QK74Xk8f06J6siVJSw1yIkflT9iXXDi0CSy95OktkXrudAx2Q74zJeTv1SyfhWHmfGOmzECmOTqX35R1Gq5oyTMPWD-vu3siwGmYT2NitMrGz5eGSQE0fj1OUoz3KklSJedhQoW5QIBCRafMWJWyt0sJUAxjAoNwm2fTBt0ZAw43SY4_Av7h1dCY5q');"></div>
+<div class="absolute top-3 left-3">
+<span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">Mantenimiento</span>
+</div>
+<div class="absolute top-3 right-3">
+<button class="p-1.5 bg-white/90 rounded-lg text-gray-700 hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</div>
+<div class="p-5">
+<h3 class="text-base font-bold mb-1">Gimnasio Techado</h3>
+<p class="text-xs text-gray-500 dark:text-gray-400 mb-4">Área Deportiva Central</p>
+<div class="space-y-3">
+<div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+<span class="material-symbols-outlined text-primary text-[20px]">groups</span>
+<span>Capacidad: 100 Personas</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+<span class="material-symbols-outlined text-primary text-[20px]">volume_up</span>
+<span>Sonido, Gradas, Vestidores</span>
+</div>
+</div>
+<button class="w-full mt-6 py-2 bg-primary/10 text-primary text-sm font-bold rounded-lg hover:bg-primary hover:text-white transition-all">
+                                Ver Horario
+                            </button>
+</div>
+</div>
+<!-- Card 4: Computing -->
+<div class="bg-white dark:bg-white/5 rounded-xl border border-gray-200 dark:border-white/10 overflow-hidden group hover:shadow-lg transition-all duration-300">
+<div class="relative h-40">
+<div class="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-110" data-alt="Computer lab with rows of PC monitors" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBlpYoB2FQPdA4iyFfXgg-hmMCf2Pl1MbK1vOlqyRdkSXCX1WOeiDmpo26QJDTXtob0ZZ7uWeruqdLr9xQTMeU49J0wlU5P6vp9EoPu_jThwLeNS8y3Ed8zf3fUd3_c53NAWwlQ04XwhhTQIk7F28O6ZuQJ8fHZ93qxFV8uoY5utqKCNfsKb-1sw-jFU4Qisrqq5w_do26pQJVG1GDygewVbvx2pPrSZLRKnphnXALbGJrc2X812fDavwik9M6VTS3yDbvbYap2');"></div>
+<div class="absolute top-3 left-3">
+<span class="bg-green-100 text-green-700 px-2 py-1 rounded text-[10px] font-bold uppercase tracking-wider">Disponible</span>
+</div>
+<div class="absolute top-3 right-3">
+<button class="p-1.5 bg-white/90 rounded-lg text-gray-700 hover:bg-white transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_vert</span>
+</button>
+</div>
+</div>
+<div class="p-5">
+<h3 class="text-base font-bold mb-1">Aula de Cómputo B</h3>
+<p class="text-xs text-gray-500 dark:text-gray-400 mb-4">Edificio B, Segundo Nivel</p>
+<div class="space-y-3">
+<div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+<span class="material-symbols-outlined text-primary text-[20px]">groups</span>
+<span>Capacidad: 20 Estudiantes</span>
+</div>
+<div class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-300">
+<span class="material-symbols-outlined text-primary text-[20px]">desktop_windows</span>
+<span>20 PCs, Fibra Óptica, UPS</span>
+</div>
+</div>
+<button class="w-full mt-6 py-2 bg-primary/10 text-primary text-sm font-bold rounded-lg hover:bg-primary hover:text-white transition-all">
+                                Ver Horario
+                            </button>
+</div>
+</div>
+</div>
+<!-- Pagination or Load More (Optional enhancement) -->
+<div class="flex justify-center pt-4">
+<button class="flex items-center gap-2 text-sm font-medium text-[#545095] hover:text-primary transition-colors">
+<span class="material-symbols-outlined">expand_more</span>
+                        Cargar más espacios
+                    </button>
+</div>
+</div>
+</main>
+</div>
+</body></html>

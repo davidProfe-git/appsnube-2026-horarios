@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EduSched - Directorio de Profesores</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#5048e5",
+                "background-light": "#f6f6f8",
+                "background-dark": "#121121",
+              },
+              fontFamily: {
+                "display": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 border-r border-primary/10 bg-white dark:bg-background-dark flex flex-col">
+<div class="p-6 flex items-center gap-3">
+<div class="bg-primary rounded-lg p-2 text-white">
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<div>
+<h1 class="text-primary font-bold text-xl leading-none">EduSched</h1>
+<p class="text-xs text-primary/60 font-medium">Gestión Escolar</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium bg-primary/10 text-primary rounded-lg" href="#">
+<span class="material-symbols-outlined">group</span>
+                Directorio Docente
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+                Horarios
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">mail</span>
+                Mensajería
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">analytics</span>
+                Reportes
+            </a>
+</nav>
+<div class="p-4 border-t border-primary/10">
+<a class="flex items-center gap-3 px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-400 hover:bg-primary/5 hover:text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Configuración
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col overflow-hidden bg-background-light dark:bg-background-dark">
+<!-- Top Header -->
+<header class="h-16 bg-white dark:bg-background-dark border-b border-primary/10 flex items-center justify-between px-8 shrink-0">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary/50 text-sm" placeholder="Buscar por nombre, especialidad o departamento..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"></span>
+</button>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-sm font-semibold text-slate-900 dark:text-white">Admin User</p>
+<p class="text-xs text-slate-500">Director Académico</p>
+</div>
+<img alt="Avatar" class="w-10 h-10 rounded-full object-cover border-2 border-primary/20" data-alt="User profile avatar with professional look" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKNFMWC3NoaL9n7iOWoRpWodlv87y6Tb0Q8hGfuzxlyKkUwm1E4QFS5PBjqMlzJl-Pl18udlbtEdPQisd7owJ8UmyxwqZA3kOT_c7xf-QmjhGKECKK3Smne0OJr5RJip2oN7F43gWN7cbsPscnAn3ePKUQ16OzG61XXKm19uagONcHXLEdjUg2WXeItIxbtK2oJu0DGiTQThqdxM2UjkxlViCv5y-gIPfGXL9kzpMGlbtsa0IbhYS_aUSHWtoLCM3mvQ4PXGBa"/>
+</div>
+</div>
+</header>
+<!-- Scrollable Content -->
+<div class="flex-1 overflow-y-auto p-8">
+<div class="max-w-7xl mx-auto space-y-8">
+<!-- Page Title & CTA -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-3xl font-black text-slate-900 dark:text-white tracking-tight">Directorio de Profesores</h2>
+<p class="text-slate-500 mt-1">Gestiona y conecta con los 124 miembros de la facultad académica.</p>
+</div>
+<button class="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg font-bold hover:bg-primary/90 transition-all shadow-lg shadow-primary/25">
+<span class="material-symbols-outlined">person_add</span>
+                        Añadir Profesor
+                    </button>
+</div>
+<!-- Department Filters -->
+<div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-hide">
+<button class="px-4 py-1.5 rounded-full bg-primary text-white text-sm font-semibold whitespace-nowrap">Todos los Departamentos</button>
+<button class="px-4 py-1.5 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 text-sm font-medium hover:border-primary/50 transition-colors whitespace-nowrap">Ciencias Naturales</button>
+<button class="px-4 py-1.5 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 text-sm font-medium hover:border-primary/50 transition-colors whitespace-nowrap">Matemáticas</button>
+<button class="px-4 py-1.5 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 text-sm font-medium hover:border-primary/50 transition-colors whitespace-nowrap">Historia y Geografía</button>
+<button class="px-4 py-1.5 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 text-sm font-medium hover:border-primary/50 transition-colors whitespace-nowrap">Idiomas</button>
+<button class="px-4 py-1.5 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 text-sm font-medium hover:border-primary/50 transition-colors whitespace-nowrap">Educación Física</button>
+<button class="px-4 py-1.5 rounded-full bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 text-sm font-medium hover:border-primary/50 transition-colors whitespace-nowrap">Artes</button>
+</div>
+<!-- Teacher Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Teacher Card 1 -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md hover:border-primary/30 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="relative">
+<img alt="Dr. Elena" class="w-16 h-16 rounded-xl object-cover" data-alt="Female teacher smiling in a classroom setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDnjrB5sHXr9RH3OK2pwa6vhn5LXvZfk3-KUWfzwX4GogmQ3LO_B5NhfZ3jBOnBxsFWvPEY7vIJfRsWfgpy8sivwXSa8RoEwVueW_nblc1Gc5QjQdZP7_tuzUAgEBPFOafwb5cFfqsFFTigIByHGrEbD5F8ZFmGf92viq8hvchvmrUwb8oQpRqMxruPnQEIGaMGoikl8SWR5YQm9M4RH-rbckQ8wg_V2xzBlZBxxdZFpkx8OyTcvkXzv__LQdxkFNmsV25GQeV7"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white dark:border-slate-800 rounded-full"></div>
+</div>
+<button class="text-slate-300 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white text-lg">Dr. Elena Rodríguez</h3>
+<p class="text-primary font-medium text-sm">Química Orgánica</p>
+<div class="mt-4 space-y-2">
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-sm">business_center</span>
+<span>Departamento de Ciencias</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-sm">event_available</span>
+<span class="text-green-600 font-semibold">Disponible hoy</span>
+</div>
+</div>
+<button class="w-full mt-6 py-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg text-sm font-bold group-hover:bg-primary group-hover:text-white transition-all">
+                            Ver Horario
+                        </button>
+</div>
+<!-- Teacher Card 2 -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md hover:border-primary/30 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="relative">
+<img alt="Prof. Marcus" class="w-16 h-16 rounded-xl object-cover" data-alt="Male teacher with professional glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBc_dCBIL4YH3O62Y1pKYbaNqz5v7WyyrhyTdPBlMsOQlXesnggYC6Qg67dWiPy5LkCw3rmjE4BDpferdr03byWMHdxJmurSS-VX6iebE7orJ1-FXOcp4u2D3ANHNCfUE5nQyxe5eGeJYANd0TcfBManrepAOtbMMgRpEkgkevBefo_wl1J3hGosoD13imndi7sxQfleIqPOjVsnBJHyTTOe6i2QD3tqIzUtislbJeqMTEIOMfuSKiHDKWk7ZIk1MTZHrzJMiA8"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-amber-500 border-2 border-white dark:border-slate-800 rounded-full"></div>
+</div>
+<button class="text-slate-300 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white text-lg">Prof. Marcus Chen</h3>
+<p class="text-primary font-medium text-sm">Historia Universal</p>
+<div class="mt-4 space-y-2">
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-sm">business_center</span>
+<span>Humanidades</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-sm">timer</span>
+<span class="text-amber-600 font-semibold">En clase (12:30 - 14:00)</span>
+</div>
+</div>
+<button class="w-full mt-6 py-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg text-sm font-bold group-hover:bg-primary group-hover:text-white transition-all">
+                            Ver Horario
+                        </button>
+</div>
+<!-- Teacher Card 3 -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md hover:border-primary/30 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="relative">
+<img alt="Sarah Miller" class="w-16 h-16 rounded-xl object-cover" data-alt="Female teacher with expressive look" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgD75y06PwK1jxnXERjlwB4N6Cwfc4hAm4tAvA3aLkckm_o1WDJ4NU3j5h0UPpZaNGPonghdrxRxeUpwfXon1D49ITFSjzz3ggxXwf-QKUFE8wufLCAhFyF-2PxJNe8lKliVyteXyLleMk1z17Z39y7LzqWSlJ95e5XrgYVPlaLpy-7DADuyiC78O1s7ORL6Jo7bDMRg95lZfrfmLwWn4zBB71oAynaJEY1IN0UfpEI3o2mAGbfQ7ANfpaVWjazXT9Ayv8qiOD"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white dark:border-slate-800 rounded-full"></div>
+</div>
+<button class="text-slate-300 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white text-lg">Sarah Miller, M.A.</h3>
+<p class="text-primary font-medium text-sm">Literatura Inglesa</p>
+<div class="mt-4 space-y-2">
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-sm">business_center</span>
+<span>Idiomas Extranjeros</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-sm">event_available</span>
+<span class="text-green-600 font-semibold">Disponible hoy</span>
+</div>
+</div>
+<button class="w-full mt-6 py-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg text-sm font-bold group-hover:bg-primary group-hover:text-white transition-all">
+                            Ver Horario
+                        </button>
+</div>
+<!-- Teacher Card 4 -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md hover:border-primary/30 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="relative">
+<img alt="David V" class="w-16 h-16 rounded-xl object-cover" data-alt="Male teacher with friendly expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5wWwXr5yednnCatPH2zKpCx1_nDqxzkeaxu5d369IO42bcCSjhu1c602u8QzSp78IVy0OuhtpRvZWEICYskQVPH9ConrhGD1LXKklWuxgmEbCppUJSBKQ1NdFu2kS2N3vHB8PuLOK1epDJ_3ZpRSJolyZotdQTwTDi1X6Ggiu2a8aUaLvQHiSCCTf5id4doMlb_VIcIgKVPmwmnntL2nT_9Jn-0s4i4jks7RuKOTnxgjy5KzxsPFPix5Vy_q6yMB1zmvNlrqt"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-red-500 border-2 border-white dark:border-slate-800 rounded-full"></div>
+</div>
+<button class="text-slate-300 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white text-lg">David Vance</h3>
+<p class="text-primary font-medium text-sm">Cálculo Avanzado</p>
+<div class="mt-4 space-y-2">
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-sm">business_center</span>
+<span>Matemáticas</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-sm">block</span>
+<span class="text-red-600 font-semibold">Fuera de oficina</span>
+</div>
+</div>
+<button class="w-full mt-6 py-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg text-sm font-bold group-hover:bg-primary group-hover:text-white transition-all">
+                            Ver Horario
+                        </button>
+</div>
+<!-- Teacher Card 5 -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md hover:border-primary/30 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="relative">
+<img alt="Lucia" class="w-16 h-16 rounded-xl object-cover" data-alt="Young professional female teacher" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0E0OnctE_nHTPudedr0lqbnx-QuUCaXZabCO15zuNLDybCyV5-jXbDsFNbJWd4-PzH2bkv7FqnDEYX7TFWpETzegXHxSyI69N8s1Qgc-fjYrtac8JpxTsPn_rlQLtYIR6icMZY7kBkY0Y6_CyheiqSwGydrS_d4SollLiHMmsvggcV4lVbd7VhXiUmAK-2FFB6VuyTrt-3ttGVhywSEfp7VFM3ZjuVynw-t3ZskSMzu5e3zIjCkVXk9nXH76d7wUG-BTyY-27"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white dark:border-slate-800 rounded-full"></div>
+</div>
+<button class="text-slate-300 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white text-lg">Lucía Méndez</h3>
+<p class="text-primary font-medium text-sm">Biología Molecular</p>
+<div class="mt-4 space-y-2">
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-sm">business_center</span>
+<span>Departamento de Ciencias</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-sm">event_available</span>
+<span class="text-green-600 font-semibold">Disponible hoy</span>
+</div>
+</div>
+<button class="w-full mt-6 py-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg text-sm font-bold group-hover:bg-primary group-hover:text-white transition-all">
+                            Ver Horario
+                        </button>
+</div>
+<!-- Teacher Card 6 -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md hover:border-primary/30 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="relative">
+<img alt="Robert" class="w-16 h-16 rounded-xl object-cover" data-alt="Male teacher with calm expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgF36oYgMDogDj46xlZoV7S7Yh6Su57yBCEaFStOFLYUrQTwsNpDpQLKN5a0hEsP-ci4R8dvI4NA-DToWNuXC48vJ62hHQ2gaDuDL2vjMwIgGLqimipYLS0kho4xA1SzBdm72Ei6ds77_KxT0o6rjHe1dvsoZdGSCa096875UjkBq_82JSluxu1kizisjMT5isAMC-aSx60FgP-qIN1tdYQWsMhMBcSh7rNJfLHQScSShlnYDk-A5sfgkQY9BSP43gDz4GD2Kq"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white dark:border-slate-800 rounded-full"></div>
+</div>
+<button class="text-slate-300 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white text-lg">Robert Patterson</h3>
+<p class="text-primary font-medium text-sm">Física Cuántica</p>
+<div class="mt-4 space-y-2">
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-sm">business_center</span>
+<span>Departamento de Ciencias</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-sm">event_available</span>
+<span class="text-green-600 font-semibold">Disponible hoy</span>
+</div>
+</div>
+<button class="w-full mt-6 py-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg text-sm font-bold group-hover:bg-primary group-hover:text-white transition-all">
+                            Ver Horario
+                        </button>
+</div>
+<!-- Teacher Card 7 -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md hover:border-primary/30 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="relative">
+<img alt="Aiko" class="w-16 h-16 rounded-xl object-cover" data-alt="Asian female teacher smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhypNO9XUllRz0AN5MbhNXNBD3TM9ZBl39Nc11Mv0O8glsj5WG3SWSbJqd_gxlCXWPSt0SdwjdsYLTWp2dD60R5_JYj4cU920wX7Zcx5h9Byog-xIOVmNK9XeNyd1uKNtbB6-fUmx4tjvtlPonc2z8sksuLFP0DZccpmlem0lJGtZMcYDNK2LoPCVq519xmgeEpoEZrcZ5xG6rA1XygPZ6MJYoUd3dcePAsCwRhGzvpa9Mcrqj710pSMz8gLDvhEtZzNIYKPBp"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-amber-500 border-2 border-white dark:border-slate-800 rounded-full"></div>
+</div>
+<button class="text-slate-300 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white text-lg">Aiko Tanaka</h3>
+<p class="text-primary font-medium text-sm">Diseño Gráfico</p>
+<div class="mt-4 space-y-2">
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-sm">business_center</span>
+<span>Departamento de Artes</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-sm">timer</span>
+<span class="text-amber-600 font-semibold">Tutoría en curso</span>
+</div>
+</div>
+<button class="w-full mt-6 py-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg text-sm font-bold group-hover:bg-primary group-hover:text-white transition-all">
+                            Ver Horario
+                        </button>
+</div>
+<!-- Teacher Card 8 -->
+<div class="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-sm border border-slate-100 dark:border-slate-700 hover:shadow-md hover:border-primary/30 transition-all group">
+<div class="flex justify-between items-start mb-4">
+<div class="relative">
+<img alt="Julia" class="w-16 h-16 rounded-xl object-cover" data-alt="Professional teacher with serious but kind expression" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxRCCRAmvhQB0Pev605cb_UiSFFyUhyW0eULGMbbpK4IXZXoUk26q0d2clUEKkY_pgb2_kSgDvhiDBhT0LIqS6ChMbKGbUU2_dyMr9XhIk6lSEBNZEgQkYJrGHwgbemGzVRJ6SHtC21RIx2_w8WOSIlPSF6U9ux75tJmnhTBXtDCIvNldXQzZPpPt94qKDqLyoezLSD9d2V8hoM6frF_OEj8OItz0ZhG-qrxS_vJwaCKGRk-rniOG-45TPUTXdyteQImuohiXB"/>
+<div class="absolute -bottom-1 -right-1 w-4 h-4 bg-green-500 border-2 border-white dark:border-slate-800 rounded-full"></div>
+</div>
+<button class="text-slate-300 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+<h3 class="font-bold text-slate-900 dark:text-white text-lg">Julia Sterling</h3>
+<p class="text-primary font-medium text-sm">Economía</p>
+<div class="mt-4 space-y-2">
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-sm">business_center</span>
+<span>Humanidades</span>
+</div>
+<div class="flex items-center gap-2 text-xs text-slate-500">
+<span class="material-symbols-outlined text-sm">event_available</span>
+<span class="text-green-600 font-semibold">Disponible hoy</span>
+</div>
+</div>
+<button class="w-full mt-6 py-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-200 rounded-lg text-sm font-bold group-hover:bg-primary group-hover:text-white transition-all">
+                            Ver Horario
+                        </button>
+</div>
+</div>
+<!-- Pagination -->
+<div class="flex items-center justify-center gap-2 pt-4">
+<button class="p-2 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-400 hover:text-primary hover:border-primary transition-all">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 bg-primary text-white font-bold rounded-lg shadow-sm">1</button>
+<button class="w-10 h-10 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-semibold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-primary transition-all">2</button>
+<button class="w-10 h-10 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-semibold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-primary transition-all">3</button>
+<span class="px-2 text-slate-400">...</span>
+<button class="w-10 h-10 bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-semibold rounded-lg border border-slate-200 dark:border-slate-700 hover:border-primary transition-all">12</button>
+<button class="p-2 border border-slate-200 dark:border-slate-700 rounded-lg text-slate-400 hover:text-primary hover:border-primary transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html class="light" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gestión de Horarios - Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#5048e5",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#121121",
+                        "subject-math": "#3b82f6",
+                        "subject-science": "#10b981",
+                        "subject-english": "#f59e0b",
+                        "subject-history": "#8b5cf6",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav {
+            background-color: rgba(80, 72, 229, 0.1);
+            color: #5048e5;
+            border-right: 3px solid #5048e5;
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: 80px repeat(5, 1fr);
+        }
+    </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 bg-white dark:bg-background-dark border-r border-slate-200 dark:border-slate-800 flex flex-col shrink-0">
+<div class="p-6 flex items-center gap-3">
+<div class="bg-primary p-2 rounded-lg text-white">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<h1 class="text-xl font-bold tracking-tight text-slate-800 dark:text-white">EduSched</h1>
+</div>
+<nav class="flex-1 px-4 space-y-1 overflow-y-auto">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg active-nav transition-colors" href="#">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">calendar_month</span>
+<span class="text-sm font-medium">Schedule</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="text-sm font-medium">Teachers</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="text-sm font-medium">Classes</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">meeting_room</span>
+<span class="text-sm font-medium">Rooms</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 flex flex-col overflow-hidden">
+<!-- Header -->
+<header class="h-16 bg-white dark:bg-background-dark border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-8 shrink-0">
+<div class="flex items-center gap-4">
+<h2 class="text-lg font-semibold text-slate-800 dark:text-white">Gestión de Horarios</h2>
+<div class="relative w-72">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl">search</span>
+<input class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-lg py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary transition-all" placeholder="Buscar materia, aula o profesor..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-background-dark"></span>
+</button>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-800"></div>
+<div class="flex items-center gap-3 pl-2">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-medium text-slate-800 dark:text-white leading-tight">Admin Principal</p>
+<p class="text-xs text-slate-500 leading-tight">School Coordinator</p>
+</div>
+<img alt="Profile" class="h-9 w-9 rounded-full object-cover border-2 border-primary/20" data-alt="Professional profile picture of a female school administrator" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKnDhvSExt6NEZDdv_5c1HdTkc_OICK9jenajB4TtG3m8McCf64UzhcjvZmkwQSodrdcHEGiIzPNCQxeGnILgWnts7ZvTDUM4-FPIBDDdAxM3_84-SB-EkMieT5L0JDaC7wBYxLuDJcWz_NVScMqstBaPdC2IyTR2Ia_LVsit8gwsfTUKm75kTnqc49_ci9DbjAmdUKBO7AOFcbtXRGEEIl68G7bsJGQUvD4oPBI5LtuNBsTt9JBJ-lzvPXXwPCXLLHvbdUHo9"/>
+</div>
+</div>
+</header>
+<!-- Workspace -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Calendar View -->
+<div class="flex-1 flex flex-col bg-background-light dark:bg-background-dark overflow-hidden p-6 gap-6">
+<!-- Calendar Filters -->
+<div class="flex items-center justify-between bg-white dark:bg-slate-900 p-4 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-3 py-1.5 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined text-lg">calendar_today</span>
+                                Weekly View
+                                <span class="material-symbols-outlined text-sm">expand_more</span>
+</button>
+<div class="flex bg-slate-100 dark:bg-slate-800 rounded-lg p-1">
+<button class="px-4 py-1.5 text-sm font-medium bg-white dark:bg-slate-700 shadow-sm rounded-md">Mon 15 - Fri 19 Oct</button>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="flex -space-x-2">
+<img alt="" class="h-8 w-8 rounded-full border-2 border-white dark:border-slate-900" data-alt="Male teacher profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXzhL_jPl-AuLQkxAecBe4W28FNwKFiRV32hZrLnTY-3MjW8TDha7UHqQ7pJwcjng1GY_MO9YIaMv3HP32s1t7bJIul-tbf4Caqozc2wnE5pddccrzNvmJ6CgnrX2j1gZFUaO96n9aKysfedKsOMqYG41flRgA7ffILri1onjTXNoLp87gi3LW6CoRDmiEDpkM_7yNNPVaxBZQ10_YhgvGuvtGiByiEeTHR8S_fjPV6vf984foNl5ydkMcwVHc2MEaV1r1Okc4"/>
+<img alt="" class="h-8 w-8 rounded-full border-2 border-white dark:border-slate-900" data-alt="Female teacher profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBI5is32j6QxOIMiOHkIvOAx37zQlZb-7iQOZWXi_NTn9LZCkUHNFP02yLp8h8tUrRI2l4UO5nyirAkKUPOICMQd2nm2S91Z_CB19egRmL_0Q1kTTgQAiydaz-OL7ItIACROHBARAW81RzknWbzvy9uecRdUzIY7SyxnRKCRhFm5xRy7KnnIwFjax1DL4YcYrlXhFPXZg1SLiUqChyhHilaB_5mFde5O7RGc4130sUOxZOfEydOI2b4bK4fEBn9x5wE4yIORD25"/>
+<img alt="" class="h-8 w-8 rounded-full border-2 border-white dark:border-slate-900" data-alt="Male teacher profile photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9n0uy36-PA83GJFN_f69AJ_4a5a9Yc4maWfbivKDddygiSzstAq0IEMfEuZ7atd9edLR9c6iV7UDkNGQqGSpZC7HMEbYyW51JfLSukBZCgpm9-ygjksOai-8i19K5o33kvEl2LjxiUL4J9M-vDWRUEyVlHfvF1iwuvJEQ49gJ2yTMMUbPJhqMDrHjSYZT5Y3Q05xX8q2vjLj9yOE3UOM1i6Gd73npLRjIuxXYuBvohAf7J0CA-M5-zfDU8AvtC-h192wRprc2"/>
+<div class="h-8 w-8 rounded-full border-2 border-white dark:border-slate-900 bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-[10px] font-bold">+12</div>
+</div>
+<button class="bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 transition-all">
+<span class="material-symbols-outlined text-lg">add</span>
+                                Add Class
+                            </button>
+</div>
+</div>
+<!-- Weekly Grid -->
+<div class="flex-1 bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-auto relative">
+<!-- Sticky Header for Days -->
+<div class="sticky top-0 z-20 calendar-grid bg-slate-50 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700">
+<div class="p-4 border-r border-slate-200 dark:border-slate-700"></div>
+<div class="p-4 text-center border-r border-slate-200 dark:border-slate-700">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Mon</p>
+<p class="text-lg font-semibold">15</p>
+</div>
+<div class="p-4 text-center border-r border-slate-200 dark:border-slate-700">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-wider text-primary">Tue</p>
+<p class="text-lg font-semibold text-primary">16</p>
+</div>
+<div class="p-4 text-center border-r border-slate-200 dark:border-slate-700">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Wed</p>
+<p class="text-lg font-semibold">17</p>
+</div>
+<div class="p-4 text-center border-r border-slate-200 dark:border-slate-700">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Thu</p>
+<p class="text-lg font-semibold">18</p>
+</div>
+<div class="p-4 text-center">
+<p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Fri</p>
+<p class="text-lg font-semibold">19</p>
+</div>
+</div>
+<!-- Grid Body -->
+<div class="relative">
+<!-- Time Rows -->
+<div class="calendar-grid relative">
+<!-- 08:00 Slot -->
+<div class="p-4 text-right border-r border-b border-slate-100 dark:border-slate-800 text-xs font-medium text-slate-400">08:00</div>
+<div class="border-r border-b border-slate-100 dark:border-slate-800 p-2 min-h-[100px] bg-slate-50/30">
+<div class="bg-subject-math/10 border-l-4 border-subject-math p-3 rounded-lg shadow-sm group cursor-move hover:shadow-md transition-all">
+<div class="flex justify-between items-start mb-1">
+<span class="text-[10px] font-bold uppercase text-subject-math">Math</span>
+<span class="material-symbols-outlined text-xs text-slate-400 group-hover:text-slate-600">drag_indicator</span>
+</div>
+<p class="text-sm font-semibold text-slate-800 dark:text-slate-200">Calculus II</p>
+<div class="flex items-center gap-2 mt-2">
+<img alt="" class="h-5 w-5 rounded-full" data-alt="Portrait of math teacher" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPm2DFq84DF_jtpKOQxPXH8t1W3sjFrT5LXqqyt1mIkRTWLZ9HWMJb5-8zCYRqHks0oHyVshQ8dImEoHR6PwV8Djjp_3bHDfloVDUBtByvQfNUbgbT10a_819uJeM0UldYaaQ47oZYCAeNMfr9aQZDZcKVNfy3xIBcIczPfXfWar8iIvADkvtXBXtNMhjxPh7dotf9S8ZvGlS2jFQhPhqmgCWN4hWkTDBQWrSBKM-0DPgFbXxQ8EkaSSTmrPBtoJClFFqeJuQR"/>
+<p class="text-[10px] text-slate-500">Dr. Aris</p>
+<span class="ml-auto text-[10px] px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-slate-600">L1</span>
+</div>
+</div>
+</div>
+<div class="border-r border-b border-slate-100 dark:border-slate-800 p-2 min-h-[100px]"></div>
+<div class="border-r border-b border-slate-100 dark:border-slate-800 p-2 min-h-[100px]">
+<div class="bg-subject-english/10 border-l-4 border-subject-english p-3 rounded-lg shadow-sm group cursor-move hover:shadow-md transition-all">
+<div class="flex justify-between items-start mb-1">
+<span class="text-[10px] font-bold uppercase text-subject-english">English</span>
+<span class="material-symbols-outlined text-xs text-slate-400">drag_indicator</span>
+</div>
+<p class="text-sm font-semibold text-slate-800 dark:text-slate-200">Literature</p>
+<div class="flex items-center gap-2 mt-2">
+<img alt="" class="h-5 w-5 rounded-full" data-alt="Portrait of english teacher" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzdptsdopSKyR9oVTWSM0DUR7iudTeTwX2JAtNNy10xq-YJysuz7ABZtsP0nrIWd8vNpdXDamW1YdWl7uiXVGQnwf9SudT0LthzQew2kQD90ZO-tvrV1wary0j8Ffcc1Zs2bAsxtrAwvkRcUBqUwrqd3XOAjcQaX_0_1gadFtGBXwEGf3ny7nrA8VFZZFyNRbJnGMrwDvBLNMuQ9Gl-JINIAwY9My1VI_lkgoqJZ7LftPSLjYv90bChQXHbV41Av0XZMim0DSu"/>
+<p class="text-[10px] text-slate-500">M. Smith</p>
+<span class="ml-auto text-[10px] px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-slate-600">B12</span>
+</div>
+</div>
+</div>
+<div class="border-r border-b border-slate-100 dark:border-slate-800 p-2 min-h-[100px]"></div>
+<div class="border-b border-slate-100 dark:border-slate-800 p-2 min-h-[100px]"></div>
+<!-- 09:00 Slot -->
+<div class="p-4 text-right border-r border-b border-slate-100 dark:border-slate-800 text-xs font-medium text-slate-400">09:00</div>
+<div class="border-r border-b border-slate-100 dark:border-slate-800 p-2 min-h-[100px]"></div>
+<div class="border-r border-b border-slate-100 dark:border-slate-800 p-2 min-h-[100px]">
+<div class="bg-subject-science/10 border-l-4 border-subject-science p-3 rounded-lg shadow-sm group cursor-move hover:shadow-md transition-all">
+<div class="flex justify-between items-start mb-1">
+<span class="text-[10px] font-bold uppercase text-subject-science">Science</span>
+<span class="material-symbols-outlined text-xs text-slate-400">drag_indicator</span>
+</div>
+<p class="text-sm font-semibold text-slate-800 dark:text-slate-200">Organic Chem</p>
+<div class="flex items-center gap-2 mt-2">
+<img alt="" class="h-5 w-5 rounded-full" data-alt="Portrait of science teacher" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBvyhkVs4KFcItwWorBYI-BzcMjU2quu_E0eGeR-33xSjDv2B1xE0rI9IzHSSeTukmVL7vYTy0RKD-GBSxfx6DAraz9UxF2ypd3UgztCGAJDM-SX-61OOMkxT2sYwIe3N6cIaI4Q52ctlyjwyYi--AO3ucL9aE5Jvks_94HL-qLBEUHnzixZutOzyWIdMn34zQKRcYQSIvmkm9zPEcBQRHPKVOj5Fu5SKhI5aW6Q2sWyzmUoPBQNqNzZH2cZPJA1H-kCbI-w0e"/>
+<p class="text-[10px] text-slate-500">Dr. J. Doe</p>
+<span class="ml-auto text-[10px] px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded text-slate-600">Lab 3</span>
+</div>
+</div>
+</div>
+<div class="border-r border-b border-slate-100 dark:border-slate-800 p-2 min-h-[100px]"></div>
+<div class="border-r border-b border-slate-100 dark:border-slate-800 p-2 min-h-[100px]">
+<div class="bg-subject-history/10 border-l-4 border-subject-history p-3 rounded-lg shadow-sm group cursor-move hover:shadow-md transition-all">
+<div class="flex justify-between items-start mb-1">
+<span class="text-[10px] font-bold uppercase text-subject-history">History</span>
+<span class="material-symbols-outlined text-xs text-slate-400">drag_indicator</span>
+</div>
+<p class="text-sm font-semibold text-slate-800 dark:text-slate-200">Modern Era</p>
+<div class="flex items-center gap-2 mt-2 text-[10px] text-slate-500">
+<span class="h-5 w-5 rounded-full bg-slate-200 flex items-center justify-center font-bold">RB</span>
+<p>R. Brown</p>
+<span class="ml-auto px-1.5 py-0.5 bg-slate-200 dark:bg-slate-700 rounded">C1</span>
+</div>
+</div>
+</div>
+<div class="border-b border-slate-100 dark:border-slate-800 p-2 min-h-[100px]"></div>
+<!-- 10:00 Slot - Break -->
+<div class="p-2 text-right border-r border-b border-slate-100 dark:border-slate-800 text-[10px] font-bold text-slate-300">10:00</div>
+<div class="col-span-5 bg-slate-50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800 flex items-center justify-center" colspan="5">
+<span class="text-xs font-bold text-slate-400 uppercase tracking-[0.2em]">Break Time</span>
+</div>
+<!-- 11:00 Slot -->
+<div class="p-4 text-right border-r border-b border-slate-100 dark:border-slate-800 text-xs font-medium text-slate-400">11:00</div>
+<div class="border-r border-b border-slate-100 dark:border-slate-800 p-2 min-h-[100px] border-dashed border-2 border-slate-100 dark:border-slate-800 flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-200 text-3xl">add_circle</span>
+</div>
+<div class="border-r border-b border-slate-100 dark:border-slate-800 p-2 min-h-[100px]"></div>
+<div class="border-r border-b border-slate-100 dark:border-slate-800 p-2 min-h-[100px]"></div>
+<div class="border-r border-b border-slate-100 dark:border-slate-800 p-2 min-h-[100px]"></div>
+<div class="border-b border-slate-100 dark:border-slate-800 p-2 min-h-[100px]"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Add Sidebar -->
+<aside class="w-80 bg-white dark:bg-slate-900 border-l border-slate-200 dark:border-slate-800 p-6 flex flex-col shrink-0">
+<div class="flex items-center justify-between mb-8">
+<h3 class="text-lg font-bold text-slate-800 dark:text-white">Quick Add</h3>
+<button class="text-slate-400 hover:text-slate-600">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<form class="space-y-6">
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase">Course Name</label>
+<input class="w-full border-slate-200 dark:border-slate-700 dark:bg-slate-800 rounded-lg text-sm focus:ring-primary" placeholder="e.g. Physics Honors" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase">Select Teacher</label>
+<div class="relative group">
+<button class="w-full flex items-center justify-between px-3 py-2 border border-slate-200 dark:border-slate-700 dark:bg-slate-800 rounded-lg text-sm" type="button">
+<div class="flex items-center gap-2">
+<img alt="" class="h-6 w-6 rounded-full" data-alt="Portrait of a male teacher" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYy-ss_IVBWu6g_CIEHIjtPgFyyR0Y77-_VIZuy2wP4MVUZfuljKDw1qAT9HaJ8_fOqlb9zEZ1yqQZ1tdWMTjIu5yq-V4VeFRBr5dgtlLtOPzApwuzTvFMJP1gTz2EKpT9OUJwVH088a5x_tM-ZtxtYeqBEEyW3gKx7qrrPJbf7-KKnrQnQENAnWg1LyzSTZBntjSTsPkx8LzASzC4BTwy20_VHTn4gFEZEjS_FGFVeH6Nthp0MHU-MFwivJnlT2kKZUimUKRk"/>
+<span>Dr. Jane Doe</span>
+</div>
+<span class="material-symbols-outlined text-slate-400">unfold_more</span>
+</button>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase">Select Group</label>
+<select class="w-full border-slate-200 dark:border-slate-700 dark:bg-slate-800 rounded-lg text-sm focus:ring-primary">
+<option>10th Grade A</option>
+<option>10th Grade B</option>
+<option>11th Grade Alpha</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-slate-500 uppercase">Select Room</label>
+<select class="w-full border-slate-200 dark:border-slate-700 dark:bg-slate-800 rounded-lg text-sm focus:ring-primary">
+<option>Science Lab 3</option>
+<option>Auditorium A</option>
+<option>Room 102</option>
+</select>
+</div>
+<div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+<button class="w-full bg-primary text-white font-bold py-3 rounded-xl shadow-lg shadow-primary/20 hover:translate-y-[-1px] active:translate-y-0 transition-all" type="submit">
+                                Create Session
+                            </button>
+<p class="text-center text-[11px] text-slate-400 mt-4 italic">Drag and drop into the calendar to set specific time</p>
+</div>
+</form>
+<div class="mt-auto">
+<div class="bg-primary/5 dark:bg-primary/10 rounded-xl p-4 border border-primary/10">
+<div class="flex items-center gap-3 mb-2">
+<span class="material-symbols-outlined text-primary">warning</span>
+<h4 class="text-xs font-bold text-primary uppercase">Conflict Alert</h4>
+</div>
+<p class="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                                Dr. Aris is already assigned to <strong>Calculus II</strong> during the Mon 08:00 slot.
+                            </p>
+</div>
+</div>
+</aside>
+</div>
+</main>
+</div>
+</body></html>
