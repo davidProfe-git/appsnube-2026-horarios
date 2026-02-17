@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Room and Facility Management - EduSchedule</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2b8cee",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex">
+<aside class="w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col h-screen sticky top-0">
+<div class="p-6 flex items-center gap-3">
+<div class="bg-primary size-10 rounded-lg flex items-center justify-center text-white shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined">calendar_month</span>
+</div>
+<div>
+<h1 class="text-lg font-bold leading-tight tracking-tight">EduSchedule</h1>
+<p class="text-xs text-slate-500 font-medium uppercase tracking-wider">University Admin</p>
+</div>
+</div>
+<nav class="flex-1 px-4 py-4 space-y-1">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">groups</span>
+<span class="text-sm">Instructors</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-primary/10 text-primary font-semibold" href="#">
+<span class="material-symbols-outlined">meeting_room</span>
+<span class="text-sm">Rooms</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">school</span>
+<span class="text-sm">Student Groups</span>
+</a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm">Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-3 p-2 bg-slate-50 dark:bg-slate-800 rounded-xl">
+<img alt="University Administrator Profile Picture" class="size-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCA56jUXc9DZNSuXWD7MqmFSq_9oZJOpCrWNY8wU4pAXMcKKAFL3zVWEAWKUO1En1_FLZdI9SL0JV4mY-s3H49PbpcE9U2QNCKMPR23ZEvvGtdSekWqbPqd1zVHN8_WCyTkd_Jjl_WqpkxBBeRZkdmaCEGWRdmZJgfn2JntXSGQ6NVGcY9U4liofXj0C5ewm58xxpEoYVpqrozjTrxfIyrXyH5Mm8ByMYl7_B47OYzpJXi1GYr96U1Eb7RcHc_phVH390RpLEpEBDR"/>
+<div class="overflow-hidden">
+<p class="text-sm font-semibold truncate">Dr. Julian Vance</p>
+<p class="text-xs text-slate-500 truncate">Dean of Admissions</p>
+</div>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col h-screen overflow-hidden">
+<header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-8 py-4 flex items-center justify-between z-10">
+<div class="flex items-center gap-6">
+<div>
+<h2 class="text-2xl font-bold">Room &amp; Facility Management</h2>
+<p class="text-sm text-slate-500">Manage campus infrastructure and availability</p>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary transition-all" placeholder="Search rooms..." type="text"/>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-primary text-white text-sm font-bold rounded-lg hover:bg-primary/90 transition-all shadow-sm">
+<span class="material-symbols-outlined text-lg">add_business</span>
+<span>Add New Room</span>
+</button>
+<div class="flex items-center gap-2 border-l border-slate-200 dark:border-slate-800 ml-2 pl-4">
+<button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+</div>
+</div>
+</header>
+<div class="flex-1 flex overflow-hidden">
+<div class="flex-1 overflow-y-auto p-8">
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5 hover:shadow-lg transition-all border-t-4 border-t-emerald-500">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Building A • Level 3</span>
+<h3 class="text-xl font-bold mt-1">Room 302</h3>
+</div>
+<span class="px-2 py-1 bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 text-[10px] font-bold rounded uppercase">Available</span>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-lg">groups</span>
+<span>Capacity: 40 Students</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-lg">videocam</span>
+<span>Projector, Smart Board, Speakers</span>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+<span>Daily Occupancy</span>
+<span class="font-bold">12% full</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-emerald-500 h-full w-[12%]"></div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5 hover:shadow-lg transition-all border-t-4 border-t-primary">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Building B • Ground</span>
+<h3 class="text-xl font-bold mt-1">Auditorium A</h3>
+</div>
+<span class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded uppercase">In Use</span>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-lg">groups</span>
+<span>Capacity: 200 Students</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-lg">mic</span>
+<span>PA System, Dual Projectors, Stage</span>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+<span>Daily Occupancy</span>
+<span class="font-bold text-primary">85% full</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[85%]"></div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5 hover:shadow-lg transition-all border-t-4 border-t-primary">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Science Wing • Level 1</span>
+<h3 class="text-xl font-bold mt-1">Lab B</h3>
+</div>
+<span class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded uppercase">In Use</span>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-lg">groups</span>
+<span>Capacity: 24 Students</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-lg">science</span>
+<span>Lab Setup, Sinks, Gas Valves</span>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+<span>Daily Occupancy</span>
+<span class="font-bold text-primary">60% full</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[60%]"></div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5 hover:shadow-lg transition-all border-t-4 border-t-slate-300">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Main Library • Level 2</span>
+<h3 class="text-xl font-bold mt-1">Study Room 22</h3>
+</div>
+<span class="px-2 py-1 bg-slate-100 text-slate-500 dark:bg-slate-800 dark:text-slate-400 text-[10px] font-bold rounded uppercase">Maintenance</span>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-lg">groups</span>
+<span>Capacity: 6 Students</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-lg">wifi</span>
+<span>Whiteboard, LAN ports</span>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+<span>Daily Occupancy</span>
+<span class="font-bold">0% full</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-slate-300 h-full w-[0%]"></div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5 hover:shadow-lg transition-all border-t-4 border-t-emerald-500">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Main Library • Hall</span>
+<h3 class="text-xl font-bold mt-1">Library Hall</h3>
+</div>
+<span class="px-2 py-1 bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400 text-[10px] font-bold rounded uppercase">Available</span>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-lg">groups</span>
+<span>Capacity: 15 Students</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-lg">desktop_windows</span>
+<span>Mac Workstations (5), Printer</span>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+<span>Daily Occupancy</span>
+<span class="font-bold">25% full</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-emerald-500 h-full w-[25%]"></div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 p-5 hover:shadow-lg transition-all border-t-4 border-t-primary">
+<div class="flex justify-between items-start mb-4">
+<div>
+<span class="text-xs font-bold text-slate-400 uppercase tracking-widest">Building A • Level 2</span>
+<h3 class="text-xl font-bold mt-1">Room 205</h3>
+</div>
+<span class="px-2 py-1 bg-primary/10 text-primary text-[10px] font-bold rounded uppercase">In Use</span>
+</div>
+<div class="space-y-3 mb-6">
+<div class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-lg">groups</span>
+<span>Capacity: 30 Students</span>
+</div>
+<div class="flex items-center gap-3 text-sm text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined text-lg">videocam</span>
+<span>Standard Projector, Whiteboard</span>
+</div>
+</div>
+<div class="pt-4 border-t border-slate-100 dark:border-slate-800">
+<div class="flex items-center justify-between text-xs text-slate-500 mb-2">
+<span>Daily Occupancy</span>
+<span class="font-bold text-primary">50% full</span>
+</div>
+<div class="w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[50%]"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="h-12"></div>
+</div>
+<aside class="w-72 border-l border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-y-auto hidden lg:block">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+<h3 class="text-lg font-bold">Filters</h3>
+<button class="text-primary text-xs font-bold uppercase tracking-wider">Reset</button>
+</div>
+<div class="p-6 space-y-8">
+<div class="space-y-4">
+<label class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">apartment</span>
+                        Building
+                    </label>
+<div class="space-y-2">
+<label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer transition-all">
+<input checked="" class="rounded text-primary focus:ring-primary border-slate-300 dark:border-slate-700 dark:bg-slate-800" type="checkbox"/>
+<span class="text-sm">Building A (Central)</span>
+</label>
+<label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer transition-all">
+<input checked="" class="rounded text-primary focus:ring-primary border-slate-300 dark:border-slate-700 dark:bg-slate-800" type="checkbox"/>
+<span class="text-sm">Building B (East)</span>
+</label>
+<label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer transition-all">
+<input class="rounded text-primary focus:ring-primary border-slate-300 dark:border-slate-700 dark:bg-slate-800" type="checkbox"/>
+<span class="text-sm">Science Wing</span>
+</label>
+<label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer transition-all">
+<input class="rounded text-primary focus:ring-primary border-slate-300 dark:border-slate-700 dark:bg-slate-800" type="checkbox"/>
+<span class="text-sm">Main Library</span>
+</label>
+</div>
+</div>
+<div class="space-y-4">
+<label class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">category</span>
+                        Room Type
+                    </label>
+<div class="grid grid-cols-2 gap-2">
+<button class="px-3 py-2 text-xs font-medium border border-primary bg-primary/5 text-primary rounded-lg">Lecture Hall</button>
+<button class="px-3 py-2 text-xs font-medium border border-slate-200 dark:border-slate-700 rounded-lg hover:border-primary/30 transition-all">Laboratory</button>
+<button class="px-3 py-2 text-xs font-medium border border-slate-200 dark:border-slate-700 rounded-lg hover:border-primary/30 transition-all">Seminar Room</button>
+<button class="px-3 py-2 text-xs font-medium border border-slate-200 dark:border-slate-700 rounded-lg hover:border-primary/30 transition-all">Study Space</button>
+</div>
+</div>
+<div class="space-y-4">
+<label class="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-widest flex items-center gap-2">
+<span class="material-symbols-outlined text-lg">devices</span>
+                        Equipment
+                    </label>
+<div class="space-y-2">
+<label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer transition-all">
+<input class="rounded text-primary focus:ring-primary border-slate-300 dark:border-slate-700 dark:bg-slate-800" type="checkbox"/>
+<span class="text-sm">4K Projector</span>
+</label>
+<label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer transition-all">
+<input class="rounded text-primary focus:ring-primary border-slate-300 dark:border-slate-700 dark:bg-slate-800" type="checkbox"/>
+<span class="text-sm">Audio System</span>
+</label>
+<label class="flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 cursor-pointer transition-all">
+<input class="rounded text-primary focus:ring-primary border-slate-300 dark:border-slate-700 dark:bg-slate-800" type="checkbox"/>
+<span class="text-sm">Video Conferencing</span>
+</label>
+</div>
+</div>
+<div class="mt-8 p-4 bg-primary/5 rounded-xl border border-primary/10">
+<h4 class="text-xs font-bold text-primary uppercase mb-3 tracking-widest">Status Legend</h4>
+<div class="space-y-2">
+<div class="flex items-center gap-3">
+<div class="size-2 rounded-full bg-emerald-500"></div>
+<span class="text-xs font-medium">Available Now</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="size-2 rounded-full bg-primary"></div>
+<span class="text-xs font-medium text-slate-500">Currently In Session</span>
+</div>
+<div class="flex items-center gap-3">
+<div class="size-2 rounded-full bg-slate-300"></div>
+<span class="text-xs font-medium text-slate-500">Under Maintenance</span>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</main>
+
+</body></html>
