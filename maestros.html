@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Academic Scheduler - Gestión de Maestros</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#050d9e",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#0f1023",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-[#111118] antialiased">
+    <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+        <div class="layout-container flex h-full grow flex-col">
+            <!-- Top Navigation Bar -->
+            <header
+                class="flex items-center justify-between whitespace-nowrap border-b border-solid border-primary/10 bg-white px-6 md:px-10 py-3 sticky top-0 z-50">
+                <div class="flex items-center gap-8">
+                    <div class="flex items-center gap-4 text-primary">
+                        <div class="size-8 flex items-center justify-center bg-primary rounded-lg text-white">
+                            <span class="material-symbols-outlined">school</span>
+                        </div>
+                        <h2 class="text-primary text-lg font-bold leading-tight tracking-[-0.015em]">Academic Scheduler
+                        </h2>
+                    </div>
+                    <nav class="hidden md:flex items-center gap-6">
+                        <a class="text-primary/60 hover:text-primary text-sm font-medium leading-normal transition-colors"
+                            href="#">Dashboard</a>
+                        <a class="text-primary text-sm font-bold leading-normal border-b-2 border-primary pb-1"
+                            href="#">Maestros</a>
+                        <a class="text-primary/60 hover:text-primary text-sm font-medium leading-normal transition-colors"
+                            href="#">Horarios</a>
+                        <a class="text-primary/60 hover:text-primary text-sm font-medium leading-normal transition-colors"
+                            href="#">Ajustes</a>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="hidden sm:flex items-center gap-2">
+                        <label class="flex flex-col min-w-40 !h-10 max-w-64">
+                            <div
+                                class="flex w-full flex-1 items-stretch rounded-lg h-full overflow-hidden bg-primary/5 border border-primary/10">
+                                <div class="text-primary/60 flex items-center justify-center pl-4">
+                                    <span class="material-symbols-outlined text-[20px]">search</span>
+                                </div>
+                                <input
+                                    class="form-input flex w-full min-w-0 flex-1 border-none bg-transparent focus:ring-0 h-full placeholder:text-primary/40 px-2 text-sm"
+                                    placeholder="Buscar maestro..." value="" />
+                            </div>
+                        </label>
+                    </div>
+                    <div class="flex gap-2">
+                        <button
+                            class="flex items-center justify-center rounded-lg size-10 bg-primary/5 text-primary hover:bg-primary/10 transition-colors">
+                            <span class="material-symbols-outlined">notifications</span>
+                        </button>
+                        <button
+                            class="flex items-center justify-center rounded-lg size-10 bg-primary/5 text-primary hover:bg-primary/10 transition-colors">
+                            <span class="material-symbols-outlined">account_circle</span>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            <main class="flex-1 flex flex-col max-w-[1200px] mx-auto w-full p-4 md:p-8">
+                <!-- Page Header & Stats -->
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+                    <div class="flex flex-col gap-2">
+                        <h1 class="text-primary text-4xl font-black leading-tight tracking-[-0.033em]">Gestión de
+                            Maestros</h1>
+                        <p class="text-primary/60 text-base font-normal">Administra los miembros de la facultad, sus
+                            especialidades y disponibilidad.</p>
+                    </div>
+                    <button
+                        class="flex items-center justify-center gap-2 overflow-hidden rounded-lg h-12 px-6 bg-primary text-white text-sm font-bold transition-transform active:scale-95 shadow-lg shadow-primary/20">
+                        <span class="material-symbols-outlined">add</span>
+                        <span class="truncate">Añadir Nuevo Maestro</span>
+                    </button>
+                </div>
+                <!-- Stats Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+                    <div class="flex flex-col gap-2 rounded-xl p-6 bg-white border border-primary/10 shadow-sm">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="size-8 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+                                <span class="material-symbols-outlined text-sm">group</span>
+                            </div>
+                            <p class="text-primary/60 text-sm font-medium leading-normal uppercase tracking-wider">Total
+                                Maestros</p>
+                        </div>
+                        <p class="text-primary tracking-tight text-3xl font-bold leading-tight pt-2">42</p>
+                    </div>
+                    <div class="flex flex-col gap-2 rounded-xl p-6 bg-white border border-primary/10 shadow-sm">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="size-8 rounded-full bg-green-100 text-green-700 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-sm">bolt</span>
+                            </div>
+                            <p class="text-primary/60 text-sm font-medium leading-normal uppercase tracking-wider">
+                                Activos Ahora</p>
+                        </div>
+                        <p class="text-primary tracking-tight text-3xl font-bold leading-tight pt-2">28</p>
+                    </div>
+                    <div class="flex flex-col gap-2 rounded-xl p-6 bg-white border border-primary/10 shadow-sm">
+                        <div class="flex items-center gap-3">
+                            <div
+                                class="size-8 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center">
+                                <span class="material-symbols-outlined text-sm">calendar_month</span>
+                            </div>
+                            <p class="text-primary/60 text-sm font-medium leading-normal uppercase tracking-wider">
+                                Schedules Pendientes</p>
+                        </div>
+                        <p class="text-primary tracking-tight text-3xl font-bold leading-tight pt-2">5</p>
+                    </div>
+                </div>
+                <!-- Table Container -->
+                <div class="bg-white rounded-xl border border-primary/10 shadow-sm overflow-hidden">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse">
+                            <thead>
+                                <tr class="bg-primary/[0.02]">
+                                    <th class="px-6 py-4 text-primary font-bold text-sm">Nombre</th>
+                                    <th class="px-6 py-4 text-primary font-bold text-sm">Especialidad</th>
+                                    <th class="px-6 py-4 text-primary font-bold text-sm">Disponibilidad</th>
+                                    <th class="px-6 py-4 text-primary font-bold text-sm text-right">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-primary/5">
+                                <tr class="hover:bg-primary/[0.01] transition-colors group">
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs"
+                                                data-alt="Avatar de Dr. Sarah Jenkins">SJ</div>
+                                            <div>
+                                                <p class="text-primary font-semibold text-sm">Dr. Sarah Jenkins</p>
+                                                <p class="text-primary/40 text-xs">ID: #40921</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex gap-2">
+                                            <span
+                                                class="px-3 py-1 bg-primary/5 text-primary text-xs font-medium rounded-full">Física
+                                                Cuántica</span>
+                                            <span
+                                                class="px-3 py-1 bg-primary/5 text-primary text-xs font-medium rounded-full">Matemáticas</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-2">
+                                            <div class="size-2 rounded-full bg-green-500"></div>
+                                            <p class="text-primary/70 text-sm">Lun-Vie (08:00 - 14:00)</p>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                        <div
+                                            class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <button
+                                                class="p-2 text-primary/60 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors"
+                                                title="Editar">
+                                                <span class="material-symbols-outlined text-[20px]">edit</span>
+                                            </button>
+                                            <button
+                                                class="p-2 text-red-500/60 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                                                title="Eliminar">
+                                                <span class="material-symbols-outlined text-[20px]">delete</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-primary/[0.01] transition-colors group">
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs"
+                                                data-alt="Avatar de Prof. Michael Chen">MC</div>
+                                            <div>
+                                                <p class="text-primary font-semibold text-sm">Prof. Michael Chen</p>
+                                                <p class="text-primary/40 text-xs">ID: #39882</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex gap-2">
+                                            <span
+                                                class="px-3 py-1 bg-primary/5 text-primary text-xs font-medium rounded-full">Matemáticas</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-2">
+                                            <div class="size-2 rounded-full bg-amber-500"></div>
+                                            <p class="text-primary/70 text-sm">Mar-Jue (10:00 - 16:00)</p>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                        <div
+                                            class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <button
+                                                class="p-2 text-primary/60 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors">
+                                                <span class="material-symbols-outlined text-[20px]">edit</span>
+                                            </button>
+                                            <button
+                                                class="p-2 text-red-500/60 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+                                                <span class="material-symbols-outlined text-[20px]">delete</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-primary/[0.01] transition-colors group">
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs"
+                                                data-alt="Avatar de Elena Rodriguez">ER</div>
+                                            <div>
+                                                <p class="text-primary font-semibold text-sm">Elena Rodriguez</p>
+                                                <p class="text-primary/40 text-xs">ID: #41002</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex gap-2">
+                                            <span
+                                                class="px-3 py-1 bg-primary/5 text-primary text-xs font-medium rounded-full">Computer
+                                                Science</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-2">
+                                            <div class="size-2 rounded-full bg-green-500"></div>
+                                            <p class="text-primary/70 text-sm">Lun-Mie (09:00 - 13:00)</p>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                        <div
+                                            class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <button
+                                                class="p-2 text-primary/60 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors">
+                                                <span class="material-symbols-outlined text-[20px]">edit</span>
+                                            </button>
+                                            <button
+                                                class="p-2 text-red-500/60 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+                                                <span class="material-symbols-outlined text-[20px]">delete</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-primary/[0.01] transition-colors group">
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="size-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold text-xs"
+                                                data-alt="Avatar de Dr. James Wilson">JW</div>
+                                            <div>
+                                                <p class="text-primary font-semibold text-sm">Dr. James Wilson</p>
+                                                <p class="text-primary/40 text-xs">ID: #38551</p>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex gap-2">
+                                            <span
+                                                class="px-3 py-1 bg-primary/5 text-primary text-xs font-medium rounded-full">Ética
+                                                de Datos</span>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <div class="flex items-center gap-2">
+                                            <div class="size-2 rounded-full bg-red-500"></div>
+                                            <p class="text-primary/70 text-sm">Viernes (08:00 - 12:00)</p>
+                                        </div>
+                                    </td>
+                                    <td class="px-6 py-4 text-right">
+                                        <div
+                                            class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <button
+                                                class="p-2 text-primary/60 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors">
+                                                <span class="material-symbols-outlined text-[20px]">edit</span>
+                                            </button>
+                                            <button
+                                                class="p-2 text-red-500/60 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors">
+                                                <span class="material-symbols-outlined text-[20px]">delete</span>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- Pagination -->
+                    <div
+                        class="flex items-center justify-between px-6 py-4 border-t border-primary/5 bg-primary/[0.01]">
+                        <p class="text-primary/50 text-xs">Mostrando 4 de 42 maestros</p>
+                        <div class="flex items-center gap-1">
+                            <button
+                                class="flex size-8 items-center justify-center rounded-lg border border-primary/10 bg-white text-primary hover:bg-primary/5 transition-colors">
+                                <span class="material-symbols-outlined text-sm">chevron_left</span>
+                            </button>
+                            <button
+                                class="flex size-8 items-center justify-center rounded-lg bg-primary text-white text-xs font-bold shadow-sm shadow-primary/20">1</button>
+                            <button
+                                class="flex size-8 items-center justify-center rounded-lg border border-primary/10 bg-white text-primary hover:bg-primary/5 text-xs transition-colors">2</button>
+                            <button
+                                class="flex size-8 items-center justify-center rounded-lg border border-primary/10 bg-white text-primary hover:bg-primary/5 text-xs transition-colors">3</button>
+                            <button
+                                class="flex size-8 items-center justify-center rounded-lg border border-primary/10 bg-white text-primary hover:bg-primary/5 transition-colors">
+                                <span class="material-symbols-outlined text-sm">chevron_right</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <!-- Bottom Note -->
+            <footer class="p-6 text-center">
+                <p class="text-primary/40 text-xs">© 2024 Academic Scheduler. Sistema de gestión de facultad
+                    simplificado.</p>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>

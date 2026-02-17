@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Academic Scheduler</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Material Symbols -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#050d9e",
+                        "background-light": "#f5f6f8",
+                        "background-dark": "#0f1023",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: 80px repeat(5, 1fr);
+            grid-template-rows: auto repeat(10, 80px);
+        }
+
+        .calendar-border {
+            border: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+    <!-- Top Navigation Bar -->
+    <header
+        class="flex items-center justify-between bg-white dark:bg-background-dark border-b border-slate-200 dark:border-slate-800 px-8 py-3 sticky top-0 z-50">
+        <div class="flex items-center gap-3">
+            <div class="bg-primary text-white p-2 rounded-lg">
+                <span class="material-symbols-outlined block">calendar_month</span>
+            </div>
+            <h1 class="text-xl font-bold tracking-tight text-primary">Academic Scheduler</h1>
+        </div>
+        <nav class="hidden md:flex items-center gap-8">
+            <a class="text-primary font-semibold text-sm border-b-2 border-primary pb-1" href="#">Schedule</a>
+            <a class="text-slate-500 hover:text-primary transition-colors font-medium text-sm" href="#">Teachers</a>
+            <a class="text-slate-500 hover:text-primary transition-colors font-medium text-sm" href="#">Rooms</a>
+            <a class="text-slate-500 hover:text-primary transition-colors font-medium text-sm" href="#">Groups</a>
+        </nav>
+        <div class="flex items-center gap-4">
+            <button
+                class="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-4 py-2 rounded-lg font-bold text-sm transition-all shadow-sm">
+                <span class="material-symbols-outlined text-sm">add</span>
+                <span>New Class</span>
+            </button>
+            <div class="h-8 w-[1px] bg-slate-200 mx-2"></div>
+            <div class="flex items-center gap-3">
+                <div class="text-right hidden sm:block">
+                    <p class="text-xs font-bold">Admin User</p>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-widest">Registrar</p>
+                </div>
+                <div
+                    class="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center overflow-hidden">
+                    <img class="w-full h-full object-cover" data-alt="User profile avatar icon"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJQm7juLsxmKxgJ4kl3vO__E9EBCrg2t0N8AEmdlK10gS5lfNMAKA24Q3phg6cl6T_SBQcjNuxpA9YIxogMFF1DiMtkSusqj0acwq6yNrIg60772LS_iMNzSv5bhnR93yWKt5OT6gijhtQT4tQOav5Al2hsKwyGxF08e0evbYp5cCv1R6igYSgPCx4R5kYFtPRxgb8z0_4rRpUrSuXq6AM3BooSq-JhmakP3UXwhbK5M10ugrqn0UAPC07ei2RltZiz5SbR37pJQd3" />
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="flex flex-1 overflow-hidden">
+        <!-- Sidebar: Unassigned Classes -->
+        <aside
+            class="w-80 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col overflow-hidden">
+            <div class="p-6 border-b border-slate-100 dark:border-slate-800">
+                <div class="flex items-center justify-between mb-2">
+                    <h2 class="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wider">Unassigned
+                    </h2>
+                    <span class="bg-primary/10 text-primary text-[10px] font-bold px-2 py-0.5 rounded-full">4
+                        Classes</span>
+                </div>
+                <p class="text-xs text-slate-500">Drag to schedule into time slots</p>
+            </div>
+            <div class="flex-1 overflow-y-auto p-4 space-y-4">
+                <!-- Unassigned Card 1 -->
+                <div
+                    class="p-4 bg-white dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 rounded-xl shadow-sm hover:border-primary/50 hover:shadow-md transition-all cursor-move group">
+                    <div class="flex justify-between items-start mb-2">
+                        <span
+                            class="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded uppercase">CS-2024</span>
+                        <span
+                            class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors text-lg">drag_indicator</span>
+                    </div>
+                    <h3 class="font-bold text-sm mb-1">Advanced Algorithms</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 flex items-center gap-1 mb-1">
+                        <span class="material-symbols-outlined text-xs">person</span>
+                        Dr. Smith
+                    </p>
+                    <p class="text-xs text-slate-500 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-xs">meeting_room</span>
+                        Room 302
+                    </p>
+                </div>
+                <!-- Unassigned Card 2 -->
+                <div
+                    class="p-4 bg-white dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 rounded-xl shadow-sm hover:border-primary/50 hover:shadow-md transition-all cursor-move group">
+                    <div class="flex justify-between items-start mb-2">
+                        <span
+                            class="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded uppercase">BIO-101</span>
+                        <span
+                            class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors text-lg">drag_indicator</span>
+                    </div>
+                    <h3 class="font-bold text-sm mb-1">Introduction to Biology</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 flex items-center gap-1 mb-1">
+                        <span class="material-symbols-outlined text-xs">person</span>
+                        Prof. Jones
+                    </p>
+                    <p class="text-xs text-slate-500 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-xs">meeting_room</span>
+                        Lab 105
+                    </p>
+                </div>
+                <!-- Unassigned Card 3 -->
+                <div
+                    class="p-4 bg-white dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 rounded-xl shadow-sm hover:border-primary/50 hover:shadow-md transition-all cursor-move group">
+                    <div class="flex justify-between items-start mb-2">
+                        <span
+                            class="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded uppercase">LIT-300</span>
+                        <span
+                            class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors text-lg">drag_indicator</span>
+                    </div>
+                    <h3 class="font-bold text-sm mb-1">Modern Literature</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 flex items-center gap-1 mb-1">
+                        <span class="material-symbols-outlined text-xs">person</span>
+                        Ms. Davis
+                    </p>
+                    <p class="text-xs text-slate-500 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-xs">meeting_room</span>
+                        Room 210
+                    </p>
+                </div>
+                <!-- Unassigned Card 4 -->
+                <div
+                    class="p-4 bg-white dark:bg-slate-800 border-2 border-slate-100 dark:border-slate-700 rounded-xl shadow-sm hover:border-primary/50 hover:shadow-md transition-all cursor-move group">
+                    <div class="flex justify-between items-start mb-2">
+                        <span
+                            class="text-[10px] font-bold text-primary bg-primary/10 px-2 py-0.5 rounded uppercase">PHY-402</span>
+                        <span
+                            class="material-symbols-outlined text-slate-300 group-hover:text-primary transition-colors text-lg">drag_indicator</span>
+                    </div>
+                    <h3 class="font-bold text-sm mb-1">Quantum Mechanics</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-400 flex items-center gap-1 mb-1">
+                        <span class="material-symbols-outlined text-xs">person</span>
+                        Dr. Freeman
+                    </p>
+                    <p class="text-xs text-slate-500 flex items-center gap-1">
+                        <span class="material-symbols-outlined text-xs">meeting_room</span>
+                        Room 404
+                    </p>
+                </div>
+            </div>
+            <div class="p-4 bg-slate-50 dark:bg-slate-800/50">
+                <div class="rounded-lg bg-primary/5 border border-primary/10 p-4">
+                    <p class="text-[10px] text-primary font-bold uppercase mb-1">Weekly Goal</p>
+                    <div class="w-full bg-slate-200 h-1.5 rounded-full mb-2">
+                        <div class="bg-primary h-1.5 rounded-full w-3/4"></div>
+                    </div>
+                    <p class="text-[10px] text-slate-500">75% of classes scheduled for Q4</p>
+                </div>
+            </div>
+        </aside>
+        <!-- Main Content: Weekly Grid -->
+        <section class="flex-1 flex flex-col bg-white dark:bg-background-dark overflow-hidden">
+            <!-- Calendar Header -->
+            <div class="px-8 py-4 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <h2 class="text-xl font-bold">Oct 14 - Oct 20, 2024</h2>
+                    <div class="flex items-center gap-1 bg-slate-100 dark:bg-slate-800 p-1 rounded-lg">
+                        <button class="p-1 hover:bg-white dark:hover:bg-slate-700 rounded shadow-sm transition-all">
+                            <span class="material-symbols-outlined text-sm">chevron_left</span>
+                        </button>
+                        <button
+                            class="px-3 py-1 text-xs font-bold hover:bg-white dark:hover:bg-slate-700 rounded shadow-sm transition-all uppercase">Today</button>
+                        <button class="p-1 hover:bg-white dark:hover:bg-slate-700 rounded shadow-sm transition-all">
+                            <span class="material-symbols-outlined text-sm">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="flex gap-2">
+                    <button
+                        class="flex items-center gap-2 px-3 py-1.5 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-medium hover:bg-slate-50 transition-colors">
+                        <span class="material-symbols-outlined text-sm">filter_list</span>
+                        Filter
+                    </button>
+                    <button
+                        class="flex items-center gap-2 px-3 py-1.5 border border-slate-200 dark:border-slate-700 rounded-lg text-xs font-medium hover:bg-slate-50 transition-colors">
+                        <span class="material-symbols-outlined text-sm">download</span>
+                        Export
+                    </button>
+                </div>
+            </div>
+            <!-- Scrollable Calendar Area -->
+            <div class="flex-1 overflow-auto">
+                <div class="calendar-grid min-w-[1000px] h-full">
+                    <!-- Column Headers -->
+                    <div class="h-12 sticky top-0 bg-white dark:bg-slate-900 z-10 border-b border-slate-200"></div>
+                    <div
+                        class="h-12 sticky top-0 bg-white dark:bg-slate-900 z-10 border-b border-slate-200 flex flex-col items-center justify-center border-l border-slate-100">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase">Mon</span>
+                        <span class="text-sm font-bold">14</span>
+                    </div>
+                    <div
+                        class="h-12 sticky top-0 bg-white dark:bg-slate-900 z-10 border-b border-slate-200 flex flex-col items-center justify-center border-l border-slate-100">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase">Tue</span>
+                        <span class="text-sm font-bold">15</span>
+                    </div>
+                    <div
+                        class="h-12 sticky top-0 bg-white dark:bg-slate-900 z-10 border-b border-slate-200 flex flex-col items-center justify-center border-l border-slate-100">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase">Wed</span>
+                        <span class="text-sm font-bold">16</span>
+                    </div>
+                    <div
+                        class="h-12 sticky top-0 bg-white dark:bg-slate-900 z-10 border-b border-slate-200 flex flex-col items-center justify-center border-l border-slate-100">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase">Thu</span>
+                        <span class="text-sm font-bold">17</span>
+                    </div>
+                    <div
+                        class="h-12 sticky top-0 bg-white dark:bg-slate-900 z-10 border-b border-slate-200 flex flex-col items-center justify-center border-l border-slate-100">
+                        <span class="text-[10px] font-bold text-slate-400 uppercase">Fri</span>
+                        <span class="text-sm font-bold">18</span>
+                    </div>
+                    <!-- Time Labels & Grid Cells -->
+                    <!-- 08:00 -->
+                    <div class="flex items-start justify-end pr-4 pt-2 text-[10px] font-bold text-slate-400">08:00 AM
+                    </div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100 p-1">
+                        <div class="h-full bg-primary/10 border-l-4 border-primary rounded-r p-2 text-primary">
+                            <p class="text-[9px] font-bold uppercase">CS-101</p>
+                            <p class="text-[10px] font-bold truncate">Intro to Programming</p>
+                        </div>
+                    </div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100 p-1">
+                        <div class="h-full bg-primary/10 border-l-4 border-primary rounded-r p-2 text-primary">
+                            <p class="text-[9px] font-bold uppercase">MATH-202</p>
+                            <p class="text-[10px] font-bold truncate">Calculus II</p>
+                        </div>
+                    </div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <!-- 09:00 -->
+                    <div class="flex items-start justify-end pr-4 pt-2 text-[10px] font-bold text-slate-400">09:00 AM
+                    </div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100 p-1">
+                        <div class="h-full bg-primary text-white rounded p-2 shadow-sm">
+                            <p class="text-[9px] font-bold opacity-80 uppercase">PSY-100</p>
+                            <p class="text-[10px] font-bold truncate">General Psych</p>
+                        </div>
+                    </div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <!-- 10:00 -->
+                    <div class="flex items-start justify-end pr-4 pt-2 text-[10px] font-bold text-slate-400">10:00 AM
+                    </div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div
+                        class="border-l border-b border-slate-100 hover:bg-primary/5 transition-colors cursor-pointer group flex items-center justify-center">
+                        <span
+                            class="material-symbols-outlined text-primary opacity-0 group-hover:opacity-100 transition-opacity">add_circle</span>
+                    </div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <!-- 11:00 -->
+                    <div class="flex items-start justify-end pr-4 pt-2 text-[10px] font-bold text-slate-400">11:00 AM
+                    </div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100 p-1">
+                        <div
+                            class="h-full bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded p-2">
+                            <p class="text-[9px] font-bold text-slate-400 uppercase">STAFF-M</p>
+                            <p class="text-[10px] font-bold truncate">Department Sync</p>
+                        </div>
+                    </div>
+                    <!-- 12:00 -->
+                    <div class="flex items-start justify-end pr-4 pt-2 text-[10px] font-bold text-slate-400">12:00 PM
+                    </div>
+                    <div class="border-l border-b border-slate-50 bg-slate-50/50 dark:bg-slate-800/20" colspan="5">
+                    </div>
+                    <div class="border-l border-b border-slate-50 bg-slate-50/50 dark:bg-slate-800/20"></div>
+                    <div class="border-l border-b border-slate-50 bg-slate-50/50 dark:bg-slate-800/20"></div>
+                    <div class="border-l border-b border-slate-50 bg-slate-50/50 dark:bg-slate-800/20"></div>
+                    <div class="border-l border-b border-slate-50 bg-slate-50/50 dark:bg-slate-800/20"></div>
+                    <!-- 01:00 -->
+                    <div class="flex items-start justify-end pr-4 pt-2 text-[10px] font-bold text-slate-400">01:00 PM
+                    </div>
+                    <div class="border-l border-b border-slate-100 p-1">
+                        <div class="h-full bg-primary/10 border-l-4 border-primary rounded-r p-2 text-primary">
+                            <p class="text-[9px] font-bold uppercase">HIS-101</p>
+                            <p class="text-[10px] font-bold truncate">World History</p>
+                        </div>
+                    </div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <!-- 02:00 -->
+                    <div class="flex items-start justify-end pr-4 pt-2 text-[10px] font-bold text-slate-400">02:00 PM
+                    </div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100 p-1">
+                        <div class="h-full bg-primary text-white rounded p-2 shadow-sm">
+                            <p class="text-[9px] font-bold opacity-80 uppercase">CS-302</p>
+                            <p class="text-[10px] font-bold truncate">Database Systems</p>
+                        </div>
+                    </div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <!-- 03:00 -->
+                    <div class="flex items-start justify-end pr-4 pt-2 text-[10px] font-bold text-slate-400">03:00 PM
+                    </div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100 p-1">
+                        <div class="h-full bg-primary/10 border-l-4 border-primary rounded-r p-2 text-primary">
+                            <p class="text-[9px] font-bold uppercase">LIT-201</p>
+                            <p class="text-[10px] font-bold truncate">Poetry Workshop</p>
+                        </div>
+                    </div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <!-- 04:00 -->
+                    <div class="flex items-start justify-end pr-4 pt-2 text-[10px] font-bold text-slate-400">04:00 PM
+                    </div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <!-- 05:00 -->
+                    <div class="flex items-start justify-end pr-4 pt-2 text-[10px] font-bold text-slate-400">05:00 PM
+                    </div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                    <div class="border-l border-b border-slate-100"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- Footer Summary -->
+    <footer
+        class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 px-8 py-2 flex justify-between items-center text-[10px] font-medium text-slate-500">
+        <div class="flex gap-4">
+            <span class="flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-primary"></span> Core Courses
+            </span>
+            <span class="flex items-center gap-1">
+                <span class="w-2 h-2 rounded-full bg-slate-300"></span> Administration
+            </span>
+        </div>
+        <div>
+            System Status: <span class="text-green-500 font-bold">Live</span> • Last Sync: 2 mins ago
+        </div>
+    </footer>
+</body>
+
+</html>
