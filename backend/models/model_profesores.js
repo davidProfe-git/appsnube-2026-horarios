@@ -5,9 +5,11 @@ class Profesormodel {
             const [rows] = await db.query  ('SELECT * FROM profesor');
         
         } catch (error){
+            throw error;    
 
         }
 
     }
 }
+module.exports = Profesormodel;
 
