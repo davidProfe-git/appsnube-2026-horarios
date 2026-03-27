@@ -3,9 +3,9 @@ const pool = mysql.createPool({
     
 host: 'localhost',
 user: 'root',
-password:1523,
+password:'guatato1523',
 port: 3306,     
-database: 'horarios'  
+database: 'gestion_horarios'  
 });
 
 module.exports = pool.promise();

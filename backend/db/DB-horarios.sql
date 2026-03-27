@@ -14,7 +14,7 @@ CREATE TABLE profesor (
     email VARCHAR(150) NOT NULL UNIQUE,
     especialidad VARCHAR(100)
 ) ENGINE=InnoDB;
-
+ 
 -- =====================================
 -- TABLA: MATERIA
 -- =====================================
