@@ -1,17 +1,18 @@
 {
+  "dependencies": {
+    "express": "^5.2.1",
+    "mysql2": "^3.20.0"
+  },
   "name": "backend",
-  "version": "0.0.1",
-  "description": "software de horarios de clase",
-  "license": "ISC",
-  "author": "David",
-  "type": "commonjs",
+  "version": "1.0.0",
+  "description": "",
   "main": "index.js",
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "dependencies": {
-    "express": "^5.2.1",
-    "mysql": "^2.18.1"
-  }
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
 }
