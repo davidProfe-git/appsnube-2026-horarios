@@ -1,11 +1,11 @@
-const maestrosController = require('../controllers/maestrosController');
+const maestrosModel = require('../models/maestrosModel');
 
 class maestrosController {
-    static async getmaestrosData(req ,res){
+    static async obtenermaestros(res){
         try{
-            const profesores =await maestrosController.getmaestrosData();
-            json({
-                data: profesores})
+            const maestros =await maestrosModel.obtenermaestros();
+            res.json({
+                data: maestros})
         }catch(error){
             throw error;
         }

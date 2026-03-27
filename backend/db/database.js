@@ -1,11 +1,11 @@
 const mysql = require('mysql2')
 
 const pool =mysql.createPool({
-    host: localhost,
-    User: Root,
-    password : 1234,
+    host: 'localhost',
+    user: 'root',
+    password : '',
     port : 3306,
-    database: dashboard_de_horarios_escolares
+    database: 'gestion_horarios'
 
 })
 

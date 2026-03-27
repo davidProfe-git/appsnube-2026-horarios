@@ -1,8 +1,22 @@
 const express = require('express')
 const application = express()
 
-application.get('/aleja' , (req,res)=>{
-  res.send(`<h2>hola soy ${6+3} </h2>`)
+const gruposController = require('./controllers/gruposController');
+const horariosController = require('./controllers/horariosController');
+const maestrosController = require('./controllers/maestrosController');
+const salonesController = require('./controllers/salonesController');
+
+application.get('/grupos',(peticion,respuesta)=>{
+    gruposController.obtenergrupos(respuesta)
+})
+application.get('/horarios',(peticion,respuesta)=>{
+    horariosController.obtenerhorarios(respuesta)
+})
+application.get('/maestros',(peticion,respuesta)=>{
+    maestrosController.obtenermaestros(respuesta)
+})
+application.get('/salones',(peticion,respuesta)=>{
+    salonesController.obtenersalones(respuesta)
 })
 
 application.listen(3000, ()=>{

@@ -7,8 +7,8 @@ USE gestion_horarios;
 -- =====================================
 -- TABLA: PROFESOR
 -- =====================================
-CREATE TABLE profesor (
-    id_profesor INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE maestros (
+    id_maestros INT AUTO_INCREMENT PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
     apellido VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL UNIQUE,
@@ -29,8 +29,8 @@ CREATE TABLE materia (
 -- =====================================
 -- TABLA: GRUPO
 -- =====================================
-CREATE TABLE grupo (
-    id_grupo INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE grupos (
+    id_grupos INT AUTO_INCREMENT PRIMARY KEY,
     codigo VARCHAR(50) NOT NULL UNIQUE,
     semestre INT NOT NULL,
     jornada ENUM('Mañana','Tarde','Noche') NOT NULL,
@@ -40,8 +40,8 @@ CREATE TABLE grupo (
 -- =====================================
 -- TABLA: SALON
 -- =====================================
-CREATE TABLE salon (
-    id_salon INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE salones (
+    id_salones INT AUTO_INCREMENT PRIMARY KEY,
     numero VARCHAR(20) NOT NULL,
     capacidad INT NOT NULL,
     edificio VARCHAR(100),
@@ -52,20 +52,20 @@ CREATE TABLE salon (
 -- =====================================
 -- TABLA: HORARIO
 -- =====================================
-CREATE TABLE horario (
-    id_horario INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE horarios (
+    id_horarios INT AUTO_INCREMENT PRIMARY KEY,
     dia ENUM('Lunes','Martes','Miercoles','Jueves','Viernes','Sabado') NOT NULL,
     hora_inicio TIME NOT NULL,
     hora_fin TIME NOT NULL,
 
-    id_profesor INT NOT NULL,
+    id_maestros INT NOT NULL,
     id_materia INT NOT NULL,
-    id_grupo INT NOT NULL,
-    id_salon INT NOT NULL,
+    id_grupos INT NOT NULL,
+    id_salones INT NOT NULL,
 
-    CONSTRAINT fk_profesor
-        FOREIGN KEY (id_profesor)
-        REFERENCES profesor(id_profesor)
+    CONSTRAINT fk_maestros
+        FOREIGN KEY (id_maestros)
+        REFERENCES maestros(id_maestros)
         ON DELETE RESTRICT
         ON UPDATE CASCADE,
 
@@ -75,15 +75,15 @@ CREATE TABLE horario (
         ON DELETE RESTRICT
         ON UPDATE CASCADE,
 
-    CONSTRAINT fk_grupo
-        FOREIGN KEY (id_grupo)
-        REFERENCES grupo(id_grupo)
+    CONSTRAINT fk_grupos
+        FOREIGN KEY (id_grupos)
+        REFERENCES grupos(id_grupos)
         ON DELETE RESTRICT
         ON UPDATE CASCADE,
 
-    CONSTRAINT fk_salon
-        FOREIGN KEY (id_salon)
-        REFERENCES salon(id_salon)
+    CONSTRAINT fk_salones
+        FOREIGN KEY (id_salones)
+        REFERENCES salones(id_salones)
         ON DELETE RESTRICT
         ON UPDATE CASCADE,
 
@@ -93,16 +93,16 @@ CREATE TABLE horario (
 -- =====================================
 -- ÍNDICES PARA RENDIMIENTO
 -- =====================================
-CREATE INDEX idx_horario_profesor ON horario(id_profesor);
-CREATE INDEX idx_horario_grupo ON horario(id_grupo);
-CREATE INDEX idx_horario_salon ON horario(id_salon);
+CREATE INDEX idx_horario_maestros ON horario(id_maestros);
+CREATE INDEX idx_horario_grupos ON horario(id_grupos);
+CREATE INDEX idx_horario_salones ON horario(id_salones);
 CREATE INDEX idx_horario_dia ON horario(dia);
 
 
 -- =========================
 -- PROFESOR (10)
 -- =========================
-INSERT INTO profesor (nombre, apellido, email, especialidad) VALUES
+INSERT INTO maestros (nombre, apellido, email, especialidad) VALUES
 ('Carlos','Ramirez','carlos.ramirez@uni.edu','Matemáticas'),
 ('Ana','Gomez','ana.gomez@uni.edu','Programación'),
 ('Luis','Martinez','luis.martinez@uni.edu','Bases de Datos'),
@@ -132,7 +132,7 @@ INSERT INTO materia (nombre, creditos, descripcion) VALUES
 -- =========================
 -- GRUPO (10)
 -- =========================
-INSERT INTO grupo (codigo, semestre, jornada) VALUES
+INSERT INTO grupos (codigo, semestre, jornada) VALUES
 ('G101',1,'Mañana'),
 ('G102',1,'Tarde'),
 ('G201',2,'Mañana'),
@@ -147,7 +147,7 @@ INSERT INTO grupo (codigo, semestre, jornada) VALUES
 -- =========================
 -- SALON (10)
 -- =========================
-INSERT INTO salon (numero, capacidad, edificio) VALUES
+INSERT INTO salones (numero, capacidad, edificio) VALUES
 ('101',30,'A'),
 ('102',25,'A'),
 ('201',40,'B'),
@@ -162,7 +162,7 @@ INSERT INTO salon (numero, capacidad, edificio) VALUES
 -- =========================
 -- HORARIO (10)
 -- =========================
-INSERT INTO horario (dia, hora_inicio, hora_fin, id_profesor, id_materia, id_grupo, id_salon) VALUES
+INSERT INTO horarios (dia, hora_inicio, hora_fin, id_maestros, id_materia, id_grupos, id_salones) VALUES
 ('Lunes','06:00:00','08:00:00',1,1,1,1),
 ('Lunes','08:00:00','10:00:00',2,2,2,2),
 ('Martes','06:00:00','08:00:00',3,3,3,3),
