@@ -7,7 +7,7 @@ aplicacion.get('/profesor',(peticion,respuesta)=>{
     profesorControlador.obtenerProfesor(respuesta)
 })
 aplicacion.get('/horarios', (peticion, respuesta)=>{
-    horariosControlador.obtenerHorarios(respuesta)
+    horariosControlador.obtenerCalendario(respuesta)
 })
 
 //Levanta el servidor web
@@ -15,4 +15,3 @@ aplicacion.listen(4000,()=>{
     console.log('subio el servidor en el puerto')
 })
 
-API

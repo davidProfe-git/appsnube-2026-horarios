@@ -5,10 +5,12 @@ class CalendariosModel{
     //llamar a todos los profesores 
     static async obtenerCalendario(){
         try{
-            const [rows] = await db-query('SELET * FROM horario ')
+            const [rows] = await db-query('SELECT * FROM horario ')
             return rows
         }catch(error){
             throw error
         }
     }
 }
+
+module.exports = CalendariosModel;

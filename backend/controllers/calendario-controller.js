@@ -3,12 +3,12 @@ const CalendarioModel= require('../models/CalendariosModel')
 
 class Calendarioscontroller{
 
-    static async obtenerCalendario(){
+    static async obtenerCalendario(respuesta){
 
         try{
-            const Calendario = await CalendarioModel.obtenerCalendario
-            json({
-                data: Calendario
+            const Calendario = await CalendarioModel.obtenerCalendario()
+            respuesta.json({
+                Calendario
             })
 
         }catch(error){
@@ -16,3 +16,5 @@ class Calendarioscontroller{
         }
     }
 }
+
+module.exports = Calendarioscontroller;

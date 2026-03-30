@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 
-<html class="light" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Calendario de clases </title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Calendario de clases </title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -31,299 +38,381 @@
             },
         }
     </script>
-<style>
+    <style>
         body {
             font-family: 'Lexend', sans-serif;
         }
+
         .calendar-grid {
             display: grid;
             grid-template-columns: 80px repeat(5, 1fr);
             grid-template-rows: auto;
         }
+
         .time-slot {
             height: 100px;
             border-bottom: 1px solid rgba(19, 127, 236, 0.1);
         }
     </style>
 </head>
-<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
-<!-- Wrapper -->
-<div class="flex flex-col min-h-screen">
-<!-- Top Navigation Bar -->
-<header class="flex items-center justify-between border-b border-primary/10 bg-white dark:bg-background-dark px-6 py-3 sticky top-0 z-50">
-<div class="flex items-center gap-8">
-<div class="flex items-center gap-3 text-primary">
-<span class="material-symbols-outlined text-3xl">calendar_month</span>
-<h2 class="text-xl font-bold leading-tight tracking-tight">EduSched</h2>
-</div>
-<nav class="hidden md:flex items-center gap-6">
-<a class="text-slate-500 hover:text-primary text-sm font-medium transition-colors" href="#">Inicio</a>
-<a class="text-primary text-sm font-semibold border-b-2 border-primary pb-1 transition-colors" href="#">Calendario</a>
-<a class="text-slate-500 hover:text-primary text-sm font-medium transition-colors" href="#">Reportes</a>
-<a class="text-slate-500 hover:text-primary text-sm font-medium transition-colors" href="#">Configuracion</a>
-</nav>
-</div>
-<div class="flex items-center gap-4">
-<div class="relative hidden sm:block">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
-<input class="pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary w-64" placeholder="Buscar" type="text"/>
-</div>
-<button class="flex items-center justify-center p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
-<span class="material-symbols-outlined">notifications</span>
-</button>
-<div class="size-9 rounded-full bg-primary/20 border-2 border-primary overflow-hidden">
-<img alt="User Profile" class="w-full h-full object-cover" data-alt="Professional male portrait for profile avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWm5__UpVpsLLReB9RBlUVZyLcw1ysegmnlTKhhp7u5GogJzaw3xmUbrzizkKsmaj68O5O5DzpSHd1IdQeyFJAufP7bpHz3SaSdgYrBpDUc0oof94dhG7BpF3AB-vv6hIMhP2YeTRMy_aJT0uZjMOtq3w7VTpVCi_LumZEP3UBFN_CwdZT3DO9MJoEdzdRTBxj2ETVeGFeyVPx4M5P65O6gQ9hnBqQvmP8JOvexjfXivgdZh6VwniCOMBs6WYVD87CipQ9X8ONBA"/>
-</div>
-</div>
-</header>
-<!-- Main Layout -->
-<div class="flex flex-1 overflow-hidden">
-<!-- Sidebar Filters -->
-<aside class="w-72 bg-white dark:bg-background-dark border-r border-primary/10 p-6 flex flex-col gap-8 hidden lg:flex">
-<div>
-<h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 mb-4">View Filters</h3>
-<!-- Teacher Filter -->
-<div class="mb-6">
-<div class="flex items-center justify-between mb-3">
-<span class="text-sm font-semibold flex items-center gap-2"><span class="material-symbols-outlined text-primary text-lg">person</span> Teachers</span>
-<span class="material-symbols-outlined text-slate-400 text-sm">keyboard_arrow_down</span>
-</div>
-<div class="space-y-2">
-<label class="flex items-center gap-3 cursor-pointer group">
-<input checked="" class="rounded text-primary focus:ring-primary border-slate-300" type="checkbox"/>
-<span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary">Prof. Sarah Jenkins</span>
-</label>
-<label class="flex items-center gap-3 cursor-pointer group">
-<input checked="" class="rounded text-primary focus:ring-primary border-slate-300" type="checkbox"/>
-<span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary">Dr. Michael Chen</span>
-</label>
-<label class="flex items-center gap-3 cursor-pointer group">
-<input class="rounded text-primary focus:ring-primary border-slate-300" type="checkbox"/>
-<span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary">Ms. Elena Rodriguez</span>
-</label>
-</div>
-</div>
-<!-- Classroom Filter -->
-<div class="mb-6">
-<div class="flex items-center justify-between mb-3">
-<span class="text-sm font-semibold flex items-center gap-2"><span class="material-symbols-outlined text-primary text-lg">meeting_room</span> Classrooms</span>
-<span class="material-symbols-outlined text-slate-400 text-sm">keyboard_arrow_down</span>
-</div>
-<div class="space-y-2">
-<label class="flex items-center gap-3 cursor-pointer group">
-<input checked="" class="rounded text-primary focus:ring-primary border-slate-300" type="checkbox"/>
-<span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary">Lab 402 (Sci-Tech)</span>
-</label>
-<label class="flex items-center gap-3 cursor-pointer group">
-<input checked="" class="rounded text-primary focus:ring-primary border-slate-300" type="checkbox"/>
-<span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary">Room 12B (Main)</span>
-</label>
-</div>
-</div>
-<!-- Student Groups Filter -->
-<div>
-<div class="flex items-center justify-between mb-3">
-<span class="text-sm font-semibold flex items-center gap-2"><span class="material-symbols-outlined text-primary text-lg">groups</span> Groups</span>
-<span class="material-symbols-outlined text-slate-400 text-sm">keyboard_arrow_down</span>
-</div>
-<div class="space-y-2">
-<label class="flex items-center gap-3 cursor-pointer group">
-<input checked="" class="rounded text-primary focus:ring-primary border-slate-300" type="checkbox"/>
-<span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary">Computer Science 2024</span>
-</label>
-<label class="flex items-center gap-3 cursor-pointer group">
-<input class="rounded text-primary focus:ring-primary border-slate-300" type="checkbox"/>
-<span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary">Applied Mathematics 2025</span>
-</label>
-</div>
-</div>
-</div>
-<div class="mt-auto border-t border-primary/10 pt-6">
-<div class="bg-primary/5 rounded-xl p-4 border border-primary/10">
-<p class="text-xs font-semibold text-primary mb-2">PRO TIP</p>
-<p class="text-xs text-slate-500 leading-relaxed">Drag class sessions to reschedule instantly. Conflicts will be highlighted in red.</p>
-</div>
-</div>
-</aside>
-<!-- Main Calendar Area -->
-<main class="flex-1 flex flex-col bg-slate-50 dark:bg-background-dark/50 overflow-y-auto">
-<!-- Calendar Header Actions -->
-<div class="p-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white dark:bg-background-dark border-b border-primary/10">
-<div class="flex items-center gap-4">
-<h1 class="text-2xl font-bold">October 21 - 25, 2024</h1>
-<div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg p-1">
-<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined">chevron_left</span></button>
-<button class="px-3 py-1 text-sm font-semibold hover:text-primary">Today</button>
-<button class="p-1 hover:text-primary transition-colors"><span class="material-symbols-outlined">chevron_right</span></button>
-</div>
-</div>
-<div class="flex items-center gap-3">
-<div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg p-1 mr-2">
-<button class="px-4 py-1.5 text-sm font-medium bg-white dark:bg-slate-700 shadow-sm rounded-md">Week</button>
-<button class="px-4 py-1.5 text-sm font-medium text-slate-500">Day</button>
-<button class="px-4 py-1.5 text-sm font-medium text-slate-500">Month</button>
-</div>
-<button class="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all shadow-lg shadow-primary/20">
-<span class="material-symbols-outlined text-lg">add</span>
+
+<body
+    class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased overflow-x-hidden">
+    <!-- Wrapper -->
+    <div class="flex flex-col min-h-screen">
+        <!-- Top Navigation Bar -->
+        <header
+            class="flex items-center justify-between border-b border-primary/10 bg-white dark:bg-background-dark px-6 py-3 sticky top-0 z-50">
+            <div class="flex items-center gap-8">
+                <div class="flex items-center gap-3 text-primary">
+                    <span class="material-symbols-outlined text-3xl">calendar_month</span>
+                    <h2 class="text-xl font-bold leading-tight tracking-tight">EduSched</h2>
+                </div>
+                <nav class="hidden md:flex items-center gap-6">
+                    <a class="text-slate-500 hover:text-primary text-sm font-medium transition-colors"
+                        href="#">Inicio</a>
+                    <a class="text-primary text-sm font-semibold border-b-2 border-primary pb-1 transition-colors"
+                        href="#">Calendario</a>
+                    <a class="text-slate-500 hover:text-primary text-sm font-medium transition-colors"
+                        href="#">Reportes</a>
+                    <a class="text-slate-500 hover:text-primary text-sm font-medium transition-colors"
+                        href="#">Configuracion</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="relative hidden sm:block">
+                    <span
+                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+                    <input
+                        class="pl-10 pr-4 py-2 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary w-64"
+                        placeholder="Buscar" type="text" />
+                </div>
+                <button
+                    class="flex items-center justify-center p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors">
+                    <span class="material-symbols-outlined">notifications</span>
+                </button>
+                <div class="size-9 rounded-full bg-primary/20 border-2 border-primary overflow-hidden">
+                    <img alt="User Profile" class="w-full h-full object-cover"
+                        data-alt="Professional male portrait for profile avatar"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWm5__UpVpsLLReB9RBlUVZyLcw1ysegmnlTKhhp7u5GogJzaw3xmUbrzizkKsmaj68O5O5DzpSHd1IdQeyFJAufP7bpHz3SaSdgYrBpDUc0oof94dhG7BpF3AB-vv6hIMhP2YeTRMy_aJT0uZjMOtq3w7VTpVCi_LumZEP3UBFN_CwdZT3DO9MJoEdzdRTBxj2ETVeGFeyVPx4M5P65O6gQ9hnBqQvmP8JOvexjfXivgdZh6VwniCOMBs6WYVD87CipQ9X8ONBA" />
+                </div>
+            </div>
+        </header>
+        <!-- Main Layout -->
+        <div class="flex flex-1 overflow-hidden">
+            <!-- Sidebar Filters -->
+            <aside
+                class="w-72 bg-white dark:bg-background-dark border-r border-primary/10 p-6 flex flex-col gap-8 hidden lg:flex">
+                <div>
+                    <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 mb-4">View Filters</h3>
+                    <!-- Teacher Filter -->
+                    <div class="mb-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm font-semibold flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-primary text-lg">person</span> Teachers</span>
+                            <span class="material-symbols-outlined text-slate-400 text-sm">keyboard_arrow_down</span>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input checked="" class="rounded text-primary focus:ring-primary border-slate-300"
+                                    type="checkbox" />
+                                <span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary">Prof.
+                                    Sarah Jenkins</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input checked="" class="rounded text-primary focus:ring-primary border-slate-300"
+                                    type="checkbox" />
+                                <span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary">Dr.
+                                    Michael Chen</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input class="rounded text-primary focus:ring-primary border-slate-300"
+                                    type="checkbox" />
+                                <span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary">Ms.
+                                    Elena Rodriguez</span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Classroom Filter -->
+                    <div class="mb-6">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm font-semibold flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-primary text-lg">meeting_room</span>
+                                Classrooms</span>
+                            <span class="material-symbols-outlined text-slate-400 text-sm">keyboard_arrow_down</span>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input checked="" class="rounded text-primary focus:ring-primary border-slate-300"
+                                    type="checkbox" />
+                                <span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary">Lab
+                                    402 (Sci-Tech)</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input checked="" class="rounded text-primary focus:ring-primary border-slate-300"
+                                    type="checkbox" />
+                                <span class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary">Room
+                                    12B (Main)</span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- Student Groups Filter -->
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-sm font-semibold flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-primary text-lg">groups</span> Groups</span>
+                            <span class="material-symbols-outlined text-slate-400 text-sm">keyboard_arrow_down</span>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input checked="" class="rounded text-primary focus:ring-primary border-slate-300"
+                                    type="checkbox" />
+                                <span
+                                    class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary">Computer
+                                    Science 2024</span>
+                            </label>
+                            <label class="flex items-center gap-3 cursor-pointer group">
+                                <input class="rounded text-primary focus:ring-primary border-slate-300"
+                                    type="checkbox" />
+                                <span
+                                    class="text-sm text-slate-600 dark:text-slate-300 group-hover:text-primary">Applied
+                                    Mathematics 2025</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-auto border-t border-primary/10 pt-6">
+                    <div class="bg-primary/5 rounded-xl p-4 border border-primary/10">
+                        <p class="text-xs font-semibold text-primary mb-2">PRO TIP</p>
+                        <p class="text-xs text-slate-500 leading-relaxed">Drag class sessions to reschedule instantly.
+                            Conflicts will be highlighted in red.</p>
+                    </div>
+                </div>
+            </aside>
+            <!-- Main Calendar Area -->
+            <main class="flex-1 flex flex-col bg-slate-50 dark:bg-background-dark/50 overflow-y-auto">
+                <!-- Calendar Header Actions -->
+                <div
+                    class="p-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white dark:bg-background-dark border-b border-primary/10">
+                    <div class="flex items-center gap-4">
+                        <h1 class="text-2xl font-bold">October 21 - 25, 2024</h1>
+                        <div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg p-1">
+                            <button class="p-1 hover:text-primary transition-colors"><span
+                                    class="material-symbols-outlined">chevron_left</span></button>
+                            <button class="px-3 py-1 text-sm font-semibold hover:text-primary">Today</button>
+                            <button class="p-1 hover:text-primary transition-colors"><span
+                                    class="material-symbols-outlined">chevron_right</span></button>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="flex items-center bg-slate-100 dark:bg-slate-800 rounded-lg p-1 mr-2">
+                            <button
+                                class="px-4 py-1.5 text-sm font-medium bg-white dark:bg-slate-700 shadow-sm rounded-md">Week</button>
+                            <button class="px-4 py-1.5 text-sm font-medium text-slate-500">Day</button>
+                            <button class="px-4 py-1.5 text-sm font-medium text-slate-500">Month</button>
+                        </div>
+                        <button class="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all shadow-lg shadow-primary/20">
+                            <span class="material-symbols-outlined text-lg">add</span>
                             <a href="assign_class_form_modal.html">Crea nueva clase</a>
                         </button>
-</div>
-</div>
-<!-- The Calendar Grid -->
-<div class="flex-1 overflow-x-auto min-w-[1000px]">
-<div class="calendar-grid bg-white dark:bg-background-dark min-h-full">
-<!-- Header Corner -->
-<div class="border-r border-b border-primary/10 p-4 sticky top-0 bg-white dark:bg-background-dark z-30"></div>
-<!-- Days Header -->
-<div class="flex flex-col items-center justify-center py-4 border-r border-b border-primary/10 sticky top-0 bg-white dark:bg-background-dark z-30">
-<span class="text-xs font-bold text-slate-400 uppercase">Mon</span>
-<span class="text-xl font-bold">21</span>
-</div>
-<div class="flex flex-col items-center justify-center py-4 border-r border-b border-primary/10 sticky top-0 bg-white dark:bg-background-dark z-30 ring-2 ring-primary ring-inset">
-<span class="text-xs font-bold text-primary uppercase">Tue</span>
-<span class="text-xl font-bold text-primary">22</span>
-</div>
-<div class="flex flex-col items-center justify-center py-4 border-r border-b border-primary/10 sticky top-0 bg-white dark:bg-background-dark z-30">
-<span class="text-xs font-bold text-slate-400 uppercase">Wed</span>
-<span class="text-xl font-bold">23</span>
-</div>
-<div class="flex flex-col items-center justify-center py-4 border-r border-b border-primary/10 sticky top-0 bg-white dark:bg-background-dark z-30">
-<span class="text-xs font-bold text-slate-400 uppercase">Thu</span>
-<span class="text-xl font-bold">24</span>
-</div>
-<div class="flex flex-col items-center justify-center py-4 border-b border-primary/10 sticky top-0 bg-white dark:bg-background-dark z-30">
-<span class="text-xs font-bold text-slate-400 uppercase">Fri</span>
-<span class="text-xl font-bold">25</span>
-</div>
-<!-- Time Legend & Grid Slots -->
-<!-- 8 AM Row -->
-<div class="p-2 text-right text-xs font-medium text-slate-400 border-r border-primary/10 time-slot">08:00</div>
-<div class="border-r border-primary/10 time-slot bg-slate-50/30"></div>
-<div class="border-r border-primary/10 time-slot relative bg-primary/5">
-<!-- Class Entry Example -->
-<div class="absolute inset-2 top-4 h-[180px] bg-primary/10 border-l-4 border-primary rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow cursor-pointer z-10 group">
-<div class="flex justify-between items-start mb-1">
-<h4 class="text-sm font-bold text-primary truncate">Intro to Algorithm Design</h4>
-<span class="material-symbols-outlined text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">edit</span>
-</div>
-<p class="text-xs text-slate-600 dark:text-slate-400 mb-2">Prof. Sarah Jenkins</p>
-<div class="flex items-center gap-1 mt-auto">
-<span class="material-symbols-outlined text-xs text-slate-400">groups</span>
-<span class="text-[10px] font-semibold text-slate-500">24 Students</span>
-</div>
-<div class="mt-2 flex -space-x-2">
-<img class="size-5 rounded-full ring-2 ring-white" data-alt="Student avatar placeholder 1" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHQtKVRfKgLvYWts47pp3Es8o96qUC0mR5YJkHVdUC_oYk_7qeGWQiQR3qRyD6AzCR0FuEBFz79ikzWptJIwg6838eiajjt8_mt9ieqI5owJ_x3kRrkK7T1W1Nsrzvcr1SqMvBK43Dyl5OdZ1dW7LMNqY5yU0Pb-tMny2V4jLDVpt_ovMGb5mnChLmKd9qVElMdapSgHBssfMTHj_WDhuqK4-arWoERETffEqxKHLzW-Hb0mDOjUQxY6kfd44sxX4G0I8mIT4MQw"/>
-<img class="size-5 rounded-full ring-2 ring-white" data-alt="Student avatar placeholder 2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf5zQSpKf-LcnnpOaR1bBQz5Jd-rKSjms4LQXrWpVu50RYxa7f-ryPKO3rdqbQqElBoV63QrE--_r0J-auiIDuQZUe4Bm0CpgaBbbk9Q31Q4V4PO9Jfw-qFk-4bXk-R0qIItymb37ZDwkz0PppuETJlfbR7errPmVAS4TdAYbS3dfEGpwuh-YHhjqDv-zYd1jZiI_2ehGfIsQ74CEs0PZ3yxoX0Pt3dB0ws-hI9K6Ez2TEOQYcmmg39rPUn1s6YIKOkGbnYwUxcA"/>
-<div class="size-5 rounded-full bg-slate-200 flex items-center justify-center text-[8px] font-bold ring-2 ring-white">+22</div>
-</div>
-</div>
-</div>
-<div class="border-r border-primary/10 time-slot"></div>
-<div class="border-r border-primary/10 time-slot bg-slate-50/30"></div>
-<div class="time-slot"></div>
-<!-- 9 AM Row -->
-<div class="p-2 text-right text-xs font-medium text-slate-400 border-r border-primary/10 time-slot">09:00</div>
-<div class="border-r border-primary/10 time-slot">
-<!-- Class Entry Example 2 -->
-</div>
-<div class="border-r border-primary/10 time-slot bg-primary/5"></div>
-<div class="border-r border-primary/10 time-slot"></div>
-<div class="border-r border-primary/10 time-slot"></div>
-<div class="time-slot"></div>
-<!-- 10 AM Row -->
-<div class="p-2 text-right text-xs font-medium text-slate-400 border-r border-primary/10 time-slot">10:00</div>
-<div class="border-r border-primary/10 time-slot"></div>
-<div class="border-r border-primary/10 time-slot"></div>
-<div class="border-r border-primary/10 time-slot relative">
-<div class="absolute inset-2 top-10 h-[220px] bg-indigo-500/10 border-l-4 border-indigo-500 rounded-lg p-3 shadow-sm z-10">
-<h4 class="text-sm font-bold text-indigo-700 truncate">Machine Learning</h4>
-<p class="text-xs text-slate-600 dark:text-slate-400">Prof. Sarah Jenkins</p>
-<div class="flex items-center gap-1 mt-2">
-<span class="material-symbols-outlined text-xs text-slate-400">groups</span>
-<span class="text-[10px] font-semibold text-slate-500">CS Grad 2024</span>
-</div>
-</div>
-</div>
-<div class="border-r border-primary/10 time-slot"></div>
-<div class="time-slot"></div>
-<!-- 11 AM Row -->
-<div class="p-2 text-right text-xs font-medium text-slate-400 border-r border-primary/10 time-slot">11:00</div>
-<div class="border-r border-primary/10 time-slot bg-slate-50/30"></div>
-<div class="border-r border-primary/10 time-slot"></div>
-<div class="border-r border-primary/10 time-slot"></div>
-<div class="border-r border-primary/10 time-slot bg-slate-50/30 relative">
-<div class="absolute inset-2 top-0 h-[100px] bg-emerald-500/10 border-l-4 border-emerald-500 rounded-lg p-3 shadow-sm z-10">
-<h4 class="text-sm font-bold text-emerald-700 truncate">Workshop: AI Ethics</h4>
-<p class="text-xs text-slate-600 dark:text-slate-400">Guest Lecturer</p>
-<div class="flex items-center gap-1 mt-2">
-<span class="material-symbols-outlined text-xs text-slate-400">meeting_room</span>
-<span class="text-[10px] font-semibold text-slate-500">Auditorium C</span>
-</div>
-</div>
-</div>
-<div class="time-slot"></div>
-<!-- 12 PM Row (Lunch) -->
-<div class="p-2 text-right text-xs font-medium text-slate-400 border-r border-primary/10 time-slot">12:00</div>
-<div class="border-r border-primary/10 time-slot bg-slate-100/40 flex items-center justify-center">
-<span class="text-[10px] text-slate-300 font-bold uppercase rotate-90 sm:rotate-0">Break</span>
-</div>
-<div class="border-r border-primary/10 time-slot bg-slate-100/40"></div>
-<div class="border-r border-primary/10 time-slot bg-slate-100/40"></div>
-<div class="border-r border-primary/10 time-slot bg-slate-100/40"></div>
-<div class="time-slot bg-slate-100/40"></div>
-</div>
-</div>
-</main>
-</div>
-<!-- Create Class Modal Overlay (Hidden by Default usually, but visual representation here) -->
-<!-- Just showing as a preview of UI state as requested -->
-<div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4 hidden">
-<div class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
-<div class="p-6 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
-<h3 class="text-lg font-bold">Schedule New Class</h3>
-<button class="p-2 hover:bg-slate-100 rounded-full"><span class="material-symbols-outlined">close</span></button>
-</div>
-<div class="p-6 space-y-4">
-<div>
-<label class="block text-sm font-semibold mb-1">Class Title</label>
-<input class="w-full rounded-lg border-slate-200 focus:ring-primary focus:border-primary" placeholder="e.g. Physics Lab" type="text"/>
-</div>
-<div class="grid grid-cols-2 gap-4">
-<div>
-<label class="block text-sm font-semibold mb-1">Teacher</label>
-<select class="w-full rounded-lg border-slate-200 focus:ring-primary">
-<option>Prof. Sarah Jenkins</option>
-<option>Dr. Michael Chen</option>
-</select>
-</div>
-<div>
-<label class="block text-sm font-semibold mb-1">Room</label>
-<select class="w-full rounded-lg border-slate-200 focus:ring-primary">
-<option>Lab 402</option>
-<option>Room 12B</option>
-</select>
-</div>
-</div>
-<div class="grid grid-cols-2 gap-4">
-<div>
-<label class="block text-sm font-semibold mb-1">Start Time</label>
-<input class="w-full rounded-lg border-slate-200" type="time"/>
-</div>
-<div>
-<label class="block text-sm font-semibold mb-1">End Time</label>
-<input class="w-full rounded-lg border-slate-200" type="time"/>
-</div>
-</div>
-</div>
-<div class="p-6 bg-slate-50 dark:bg-slate-800/50 flex justify-end gap-3">
-<button class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-slate-800">Cancel</button>
-<button class="bg-primary text-white px-6 py-2 rounded-lg font-bold text-sm shadow-lg shadow-primary/20">Create Session</button>
-</div>
-</div>
-</div>
-</div>
-<!-- Floating Action for Mobile -->
-<button class="lg:hidden fixed bottom-6 right-6 size-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center z-50">
-<span class="material-symbols-outlined text-3xl">add</span>
-</button>
-</body></html>
+                    </div>
+                </div>
+                <!-- The Calendar Grid -->
+                <div class="flex-1 overflow-x-auto min-w-[1000px]">
+                    <div class="calendar-grid bg-white dark:bg-background-dark min-h-full">
+                        <!-- Header Corner -->
+                        <div
+                            class="border-r border-b border-primary/10 p-4 sticky top-0 bg-white dark:bg-background-dark z-30">
+                        </div>
+                        <!-- Days Header -->
+                        <div
+                            class="flex flex-col items-center justify-center py-4 border-r border-b border-primary/10 sticky top-0 bg-white dark:bg-background-dark z-30">
+                            <span class="text-xs font-bold text-slate-400 uppercase">Mon</span>
+                            <span class="text-xl font-bold">21</span>
+                        </div>
+                        <div
+                            class="flex flex-col items-center justify-center py-4 border-r border-b border-primary/10 sticky top-0 bg-white dark:bg-background-dark z-30 ring-2 ring-primary ring-inset">
+                            <span class="text-xs font-bold text-primary uppercase">Tue</span>
+                            <span class="text-xl font-bold text-primary">22</span>
+                        </div>
+                        <div
+                            class="flex flex-col items-center justify-center py-4 border-r border-b border-primary/10 sticky top-0 bg-white dark:bg-background-dark z-30">
+                            <span class="text-xs font-bold text-slate-400 uppercase">Wed</span>
+                            <span class="text-xl font-bold">23</span>
+                        </div>
+                        <div
+                            class="flex flex-col items-center justify-center py-4 border-r border-b border-primary/10 sticky top-0 bg-white dark:bg-background-dark z-30">
+                            <span class="text-xs font-bold text-slate-400 uppercase">Thu</span>
+                            <span class="text-xl font-bold">24</span>
+                        </div>
+                        <div
+                            class="flex flex-col items-center justify-center py-4 border-b border-primary/10 sticky top-0 bg-white dark:bg-background-dark z-30">
+                            <span class="text-xs font-bold text-slate-400 uppercase">Fri</span>
+                            <span class="text-xl font-bold">25</span>
+                        </div>
+                        <!-- Time Legend & Grid Slots -->
+                        <!-- 8 AM Row -->
+                        <div
+                            class="p-2 text-right text-xs font-medium text-slate-400 border-r border-primary/10 time-slot">
+                            08:00</div>
+                        <div class="border-r border-primary/10 time-slot bg-slate-50/30"></div>
+                        <div class="border-r border-primary/10 time-slot relative bg-primary/5">
+                            <!-- Class Entry Example -->
+                            <div
+                                class="absolute inset-2 top-4 h-[180px] bg-primary/10 border-l-4 border-primary rounded-lg p-3 shadow-sm hover:shadow-md transition-shadow cursor-pointer z-10 group">
+                                <div class="flex justify-between items-start mb-1">
+                                    <h4 class="text-sm font-bold text-primary truncate">Intro to Algorithm Design</h4>
+                                    <span
+                                        class="material-symbols-outlined text-xs text-primary opacity-0 group-hover:opacity-100 transition-opacity">edit</span>
+                                </div>
+                                <p class="text-xs text-slate-600 dark:text-slate-400 mb-2">Prof. Sarah Jenkins</p>
+                                <div class="flex items-center gap-1 mt-auto">
+                                    <span class="material-symbols-outlined text-xs text-slate-400">groups</span>
+                                    <span class="text-[10px] font-semibold text-slate-500">24 Students</span>
+                                </div>
+                                <div class="mt-2 flex -space-x-2">
+                                    <img class="size-5 rounded-full ring-2 ring-white"
+                                        alt="Student avatar placeholder 1"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHQtKVRfKgLvYWts47pp3Es8o96qUC0mR5YJkHVdUC_oYk_7qeGWQiQR3qRyD6AzCR0FuEBFz79ikzWptJIwg6838eiajjt8_mt9ieqI5owJ_x3kRrkK7T1W1Nsrzvcr1SqMvBK43Dyl5OdZ1dW7LMNqY5yU0Pb-tMny2V4jLDVpt_ovMGb5mnChLmKd9qVElMdapSgHBssfMTHj_WDhuqK4-arWoERETffEqxKHLzW-Hb0mDOjUQxY6kfd44sxX4G0I8mIT4MQw" />
+                                    <img class="size-5 rounded-full ring-2 ring-white"
+                                        alt="Student avatar placeholder 2"
+                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCf5zQSpKf-LcnnpOaR1bBQz5Jd-rKSjms4LQXrWpVu50RYxa7f-ryPKO3rdqbQqElBoV63QrE--_r0J-auiIDuQZUe4Bm0CpgaBbbk9Q31Q4V4PO9Jfw-qFk-4bXk-R0qIItymb37ZDwkz0PppuETJlfbR7errPmVAS4TdAYbS3dfEGpwuh-YHhjqDv-zYd1jZiI_2ehGfIsQ74CEs0PZ3yxoX0Pt3dB0ws-hI9K6Ez2TEOQYcmmg39rPUn1s6YIKOkGbnYwUxcA" />
+                                    <div
+                                        class="size-5 rounded-full bg-slate-200 flex items-center justify-center text-[8px] font-bold ring-2 ring-white">
+                                        +22</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-r border-primary/10 time-slot"></div>
+                        <div class="border-r border-primary/10 time-slot bg-slate-50/30"></div>
+                        <div class="time-slot"></div>
+                        <!-- 9 AM Row -->
+                        <div
+                            class="p-2 text-right text-xs font-medium text-slate-400 border-r border-primary/10 time-slot">
+                            09:00</div>
+                        <div class="border-r border-primary/10 time-slot">
+                            <!-- Class Entry Example 2 -->
+                        </div>
+                        <div class="border-r border-primary/10 time-slot bg-primary/5"></div>
+                        <div class="border-r border-primary/10 time-slot"></div>
+                        <div class="border-r border-primary/10 time-slot"></div>
+                        <div class="time-slot"></div>
+                        <!-- 10 AM Row -->
+                        <div
+                            class="p-2 text-right text-xs font-medium text-slate-400 border-r border-primary/10 time-slot">
+                            10:00</div>
+                        <div class="border-r border-primary/10 time-slot"></div>
+                        <div class="border-r border-primary/10 time-slot"></div>
+                        <div class="border-r border-primary/10 time-slot relative">
+                            <div
+                                class="absolute inset-2 top-10 h-[220px] bg-indigo-500/10 border-l-4 border-indigo-500 rounded-lg p-3 shadow-sm z-10">
+                                <h4 class="text-sm font-bold text-indigo-700 truncate">Machine Learning</h4>
+                                <p class="text-xs text-slate-600 dark:text-slate-400">Prof. Sarah Jenkins</p>
+                                <div class="flex items-center gap-1 mt-2">
+                                    <span class="material-symbols-outlined text-xs text-slate-400">groups</span>
+                                    <span class="text-[10px] font-semibold text-slate-500">CS Grad 2024</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-r border-primary/10 time-slot"></div>
+                        <div class="time-slot"></div>
+                        <!-- 11 AM Row -->
+                        <div
+                            class="p-2 text-right text-xs font-medium text-slate-400 border-r border-primary/10 time-slot">
+                            11:00</div>
+                        <div class="border-r border-primary/10 time-slot bg-slate-50/30"></div>
+                        <div class="border-r border-primary/10 time-slot"></div>
+                        <div class="border-r border-primary/10 time-slot"></div>
+                        <div class="border-r border-primary/10 time-slot bg-slate-50/30 relative">
+                            <div
+                                class="absolute inset-2 top-0 h-[100px] bg-emerald-500/10 border-l-4 border-emerald-500 rounded-lg p-3 shadow-sm z-10">
+                                <h4 class="text-sm font-bold text-emerald-700 truncate">Workshop: AI Ethics</h4>
+                                <p class="text-xs text-slate-600 dark:text-slate-400">Guest Lecturer</p>
+                                <div class="flex items-center gap-1 mt-2">
+                                    <span class="material-symbols-outlined text-xs text-slate-400">meeting_room</span>
+                                    <span class="text-[10px] font-semibold text-slate-500">Auditorium C</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="time-slot"></div>
+                        <!-- 12 PM Row (Lunch) -->
+                        <div
+                            class="p-2 text-right text-xs font-medium text-slate-400 border-r border-primary/10 time-slot">
+                            12:00</div>
+                        <div
+                            class="border-r border-primary/10 time-slot bg-slate-100/40 flex items-center justify-center">
+                            <span
+                                class="text-[10px] text-slate-300 font-bold uppercase rotate-90 sm:rotate-0">Break</span>
+                        </div>
+                        <div class="border-r border-primary/10 time-slot bg-slate-100/40"></div>
+                        <div class="border-r border-primary/10 time-slot bg-slate-100/40"></div>
+                        <div class="border-r border-primary/10 time-slot bg-slate-100/40"></div>
+                        <div class="time-slot bg-slate-100/40"></div>
+                    </div>
+                </div>
+            </main>
+            <div id="contenedor">
+
+            </div>
+            <script src="js/app.js"></script>
+        </div>
+        <!-- Create Class Modal Overlay (Hidden by Default usually, but visual representation here) -->
+        <!-- Just showing as a preview of UI state as requested -->
+        <div class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4 hidden">
+            <div
+                class="bg-white dark:bg-slate-900 w-full max-w-lg rounded-xl shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-200">
+                <div class="p-6 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
+                    <h3 class="text-lg font-bold">Schedule New Class</h3>
+                    <button class="p-2 hover:bg-slate-100 rounded-full"><span
+                            class="material-symbols-outlined">close</span></button>
+                </div>
+                <div class="p-6 space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold mb-1">Class Title</label>
+                        <input class="w-full rounded-lg border-slate-200 focus:ring-primary focus:border-primary"
+                            placeholder="e.g. Physics Lab" type="text" />
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold mb-1">Teacher</label>
+                            <select class="w-full rounded-lg border-slate-200 focus:ring-primary">
+                                <option>Prof. Sarah Jenkins</option>
+                                <option>Dr. Michael Chen</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-1">Room</label>
+                            <select class="w-full rounded-lg border-slate-200 focus:ring-primary">
+                                <option>Lab 402</option>
+                                <option>Room 12B</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-semibold mb-1">Start Time</label>
+                            <input class="w-full rounded-lg border-slate-200" type="time" />
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-1">End Time</label>
+                            <input class="w-full rounded-lg border-slate-200" type="time" />
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6 bg-slate-50 dark:bg-slate-800/50 flex justify-end gap-3">
+                    <button class="px-4 py-2 text-sm font-semibold text-slate-600 hover:text-slate-800">Cancel</button>
+                    <button
+                        class="bg-primary text-white px-6 py-2 rounded-lg font-bold text-sm shadow-lg shadow-primary/20">Create
+                        Session</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Floating Action for Mobile -->
+    <button
+        class="lg:hidden fixed bottom-6 right-6 size-14 bg-primary text-white rounded-full shadow-2xl flex items-center justify-center z-50">
+        <span class="material-symbols-outlined text-3xl">add</span>
+    </button>
+</body>
+
+</html>

@@ -3,12 +3,12 @@ const profesoresModel= require('../models/profesoresModel')
 
 class profesorescontroller{
 
-    static async obtenerProfesor(){
+    static async obtenerProfesor(respuesta){
 
         try{
-            const profesores = await profesoresModel.obtenerProfesor
-            json({
-                data: profesor
+            const profesores = await profesoresModel.obtenerProfesores()
+            respuesta.json({
+                profesores
             })
 
         }catch(error){
@@ -16,3 +16,5 @@ class profesorescontroller{
         }
     }
 }
+
+module.exports = profesorescontroller;
