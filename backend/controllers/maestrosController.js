@@ -5,7 +5,8 @@ class maestrosController {
         try{
             const maestros =await maestrosModel.obtenermaestros();
             res.json({
-                data: maestros})
+                maestros
+            })
         }catch(error){
             throw error;
         }

@@ -5,7 +5,8 @@ class salonesController {
         try{
             const salones =await salonesModel.obtenersalones();
             res.json({
-                data: salones})
+                salones
+            })
         }catch(error){
             throw error;
         }

@@ -6,7 +6,8 @@ class gruposController {
         try{
             const grupos =await gruposModel.obtenergrupos();
             res.json({
-                data: grupos})
+                 grupos
+                })
         }catch(error){
             throw error;
         }

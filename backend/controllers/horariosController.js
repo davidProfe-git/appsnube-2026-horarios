@@ -5,7 +5,7 @@ class horariosController {
         try{
             const horarios =await horariosModel.obtenerhorarios();
             res.json({
-                data: horarios})
+                horarios})
         }catch(error){
             throw error;
         }
