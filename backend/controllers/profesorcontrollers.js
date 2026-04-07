@@ -2,7 +2,7 @@ const profesormodels = require('../models/profesormodels');
 class Instructors {
     static async getInstructors(req, res) {
         try {
-            const profesores = await profesormodels.getInstructors();
+            const profesores = await profesormodels.getprofesorData();
             res.json({ 
                 data: profesores });   
 
