@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Dashboard de Horarios Escolares</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#137fec",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101922",
+                    },
+                    fontFamily: {
+                        "display": ["Lexend"]
+                    },
+                    borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+
+        .active-nav {
+            background-color: rgba(19, 127, 236, 0.1);
+            color: #137fec;
+            border-right: 4px solid #137fec;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: 80px repeat(5, 1fr);
+        }
+    </style>
+</head>
+
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <aside
+            class="w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col shrink-0">
+            <div class="p-6 flex items-center gap-3">
+                <div class="size-10 bg-primary rounded-xl flex items-center justify-center text-white">
+                    <span class="material-symbols-outlined text-2xl">school</span>
+                </div>
+                <div>
+
+                    <h1 class="text-sm font-bold leading-tight">Sistema Escolar</h1>
+                </div>
+            </div>
+            <nav class="flex-1 px-3 space-y-1">
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                    href="#">
+
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg active-nav" href="#">
+                    <span class="material-symbols-outlined">calendar_month</span>
+                    <span class="text-sm font-medium">Horarios</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                    href="#">
+                    <span class="material-symbols-outlined">person</span>
+                    <span class="text-sm font-medium">Maestros</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                    href="#">
+                    <span class="material-symbols-outlined">meeting_room</span>
+                    <span class="text-sm font-medium">Salones</span>
+                </a>
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                    href="#">
+                    <span class="material-symbols-outlined">group</span>
+                    <span class="text-sm font-medium">Grupos</span>
+                </a>
+            </nav>
+            <div class="p-4 border-t border-slate-200 dark:border-slate-800">
+                <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+                    href="#">
+
+
+                </a>
+            </div>
+        </aside>
+        <!-- Main Content -->
+        <main class="flex-1 flex flex-col overflow-hidden">
+            <!-- Header -->
+            <header
+                class="h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-8 shrink-0">
+                <div class="flex items-center gap-4 w-1/3">
+                    <div class="relative w-full max-w-md">
+                        <span
+                            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                        <input
+                            class="w-full bg-slate-100 dark:bg-slate-800 border-none rounded-lg pl-10 text-sm focus:ring-2 focus:ring-primary/50 transition-all"
+                            placeholder="Buscar clases, maestros o aulas..." type="text" />
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button class="p-2 text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg relative">
+                        <span class="material-symbols-outlined">notifications</span>
+                        <span
+                            class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
+                    </button>
+                    <div class="h-8 w-px bg-slate-200 dark:bg-slate-800 mx-2"></div>
+                    <div class="flex items-center gap-3">
+                        <div class="text-right hidden md:block">
+                            <p class="text-sm font-semibold leading-none">Admin Usuario</p>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Administrador</p>
+                        </div>
+                        <div
+                            class="size-9 rounded-full bg-primary/20 flex items-center justify-center overflow-hidden border border-primary/30">
+                            <img alt="" class="w-full h-full object-cover"
+                                data-alt="User profile avatar of a smiling man"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCR1oNY-OiYWPSdBCfBi5o9sP5fhF3rJW-4y15ileypWrdY9KlGj5yrq1oM7E8T8Uece-YxVioD5IxwktvHoPFoLyM6_v5e-OS-rhWyHqRXDPNdpKUo1ZcMwRyGCGLdb06v99Lst5jzj6SbQx1OYgFYLvtdTaSK4kFOZkufQKiH8ZhVknpuq2lQAQWwgH_BykJstqQ13m-n_yuB3nun49koCTqpRLl1LLGcSGHkmrYwaS4npUzYUZNXBiVpuSZiAabyg9IKYd-MWY0K" />
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- Content Area -->
+            <div class="flex-1 overflow-y-auto p-8">
+                <!-- Title & Actions -->
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+                    <div>
+                        <h2 class="text-3xl font-bold tracking-tight">Horarios</h2>
+                        <p class="text-slate-500 dark:text-slate-400">Visualización semanal de la carga académica</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="flex p-1 bg-slate-200 dark:bg-slate-800 rounded-lg">
+                            <button
+                                class="px-4 py-1.5 text-sm font-medium bg-white dark:bg-slate-700 shadow-sm rounded-md">Semana</button>
+                            <button
+                                class="px-4 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200">Día</button>
+                        </div>
+                        <button
+                            class="flex items-center gap-2 bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-lg font-bold text-sm transition-all shadow-lg shadow-primary/20">
+                            <span class="material-symbols-outlined text-lg">add</span>
+                            <span>Añadir Horario</span>
+                        </button>
+                    </div>
+                </div>
+                <!-- Filters -->
+                <div class="flex flex-wrap gap-3 mb-6">
+                    <button
+                        class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors">
+                        <span class="material-symbols-outlined text-slate-500">groups</span>
+                        <span>Todos los Grupos</span>
+                        <span class="material-symbols-outlined text-slate-400">expand_more</span>
+                    </button>
+                    <button
+                        class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors">
+                        <span class="material-symbols-outlined text-slate-500">location_on</span>
+                        <span>Todos los Salones</span>
+                        <span class="material-symbols-outlined text-slate-400">expand_more</span>
+                    </button>
+                    <button
+                        class="flex items-center gap-2 px-4 py-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors">
+                        <span class="material-symbols-outlined text-slate-500">light_mode</span>
+                        <span>Turno Matutino</span>
+                        <span class="material-symbols-outlined text-slate-400">expand_more</span>
+                    </button>
+                </div>
+                <!-- Calendar View -->
+                <div
+                    class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+                    <!-- Calendar Header -->
+                    <div
+                        class="calendar-grid border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50">
+                        <div
+                            class="p-4 text-xs font-bold text-slate-400 uppercase tracking-wider text-center border-r border-slate-200 dark:border-slate-800">
+                            Hora</div>
+                        <div class="p-4 text-center border-r border-slate-200 dark:border-slate-800">
+                            <p class="font-bold">Lunes</p>
+                            <p class="text-xs text-slate-500">14 Oct</p>
+                        </div>
+                        <div class="p-4 text-center border-r border-slate-200 dark:border-slate-800">
+                            <p class="font-bold">Martes</p>
+                            <p class="text-xs text-slate-500">15 Oct</p>
+                        </div>
+                        <div class="p-4 text-center border-r border-slate-200 dark:border-slate-800">
+                            <p class="font-bold text-primary">Miércoles</p>
+                            <p class="text-xs text-primary/70">16 Oct</p>
+                        </div>
+                        <div class="p-4 text-center border-r border-slate-200 dark:border-slate-800">
+                            <p class="font-bold">Jueves</p>
+                            <p class="text-xs text-slate-500">17 Oct</p>
+                        </div>
+                        <div class="p-4 text-center">
+                            <p class="font-bold">Viernes</p>
+                            <p class="text-xs text-slate-500">18 Oct</p>
+                        </div>
+                    </div>
+                    <!-- Calendar Body -->
+                    <div class="relative">
+                        <!-- Time Rows -->
+                        <div class="calendar-grid relative">
+                            <!-- Helper for 07:00 to 18:00 rows -->
+                            <div class="border-r border-slate-200 dark:border-slate-800 flex flex-col">
+                                <div
+                                    class="h-20 border-b border-slate-100 dark:border-slate-800 flex items-center justify-center text-xs font-medium text-slate-500">
+                                    07:00</div>
+                                <div
+                                    class="h-20 border-b border-slate-100 dark:border-slate-800 flex items-center justify-center text-xs font-medium text-slate-500">
+                                    08:00</div>
+                                <div
+                                    class="h-20 border-b border-slate-100 dark:border-slate-800 flex items-center justify-center text-xs font-medium text-slate-500">
+                                    09:00</div>
+                                <div
+                                    class="h-20 border-b border-slate-100 dark:border-slate-800 flex items-center justify-center text-xs font-medium text-slate-500">
+                                    10:00</div>
+                                <div
+                                    class="h-20 border-b border-slate-100 dark:border-slate-800 flex items-center justify-center text-xs font-medium text-slate-500">
+                                    11:00</div>
+                                <div
+                                    class="h-20 border-b border-slate-100 dark:border-slate-800 flex items-center justify-center text-xs font-medium text-slate-500">
+                                    12:00</div>
+                                <div
+                                    class="h-20 border-b border-slate-100 dark:border-slate-800 flex items-center justify-center text-xs font-medium text-slate-500">
+                                    13:00</div>
+                                <div
+                                    class="h-20 border-b border-slate-100 dark:border-slate-800 flex items-center justify-center text-xs font-medium text-slate-500">
+                                    14:00</div>
+                                <div
+                                    class="h-20 border-b border-slate-100 dark:border-slate-800 flex items-center justify-center text-xs font-medium text-slate-500">
+                                    15:00</div>
+                                <div
+                                    class="h-20 border-b border-slate-100 dark:border-slate-800 flex items-center justify-center text-xs font-medium text-slate-500">
+                                    16:00</div>
+                                <div
+                                    class="h-20 border-b border-slate-100 dark:border-slate-800 flex items-center justify-center text-xs font-medium text-slate-500">
+                                    17:00</div>
+                            </div>
+                            <!-- Column Lunes -->
+                            <div
+                                class="border-r border-slate-100 dark:border-slate-800 bg-slate-50/30 dark:bg-transparent">
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800 p-1">
+                                    <div
+                                        class="bg-blue-100 dark:bg-blue-900/40 border-l-4 border-blue-500 h-full p-2 rounded shadow-sm">
+                                        <p class="text-[10px] font-bold text-blue-700 dark:text-blue-300 uppercase">
+                                            Matemáticas II</p>
+                                        <p class="text-[9px] text-blue-600 dark:text-blue-400">Mtro. Sanchez • Aula 102
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800 p-1">
+                                    <div
+                                        class="bg-indigo-100 dark:bg-indigo-900/40 border-l-4 border-indigo-500 h-full p-2 rounded shadow-sm">
+                                        <p class="text-[10px] font-bold text-indigo-700 dark:text-indigo-300 uppercase">
+                                            Literatura</p>
+                                        <p class="text-[9px] text-indigo-600 dark:text-indigo-400">Mtra. Elena • Aula
+                                            305</p>
+                                    </div>
+                                </div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800 p-1">
+                                    <div
+                                        class="bg-amber-100 dark:bg-amber-900/40 border-l-4 border-amber-500 h-full p-2 rounded shadow-sm">
+                                        <p class="text-[10px] font-bold text-amber-700 dark:text-amber-300 uppercase">
+                                            Física I</p>
+                                        <p class="text-[9px] text-amber-600 dark:text-amber-400">Mtro. Quiroz • Lab 01
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                            </div>
+                            <!-- Column Martes -->
+                            <div class="border-r border-slate-100 dark:border-slate-800">
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800 p-1">
+                                    <div
+                                        class="bg-emerald-100 dark:bg-emerald-900/40 border-l-4 border-emerald-500 h-full p-2 rounded shadow-sm">
+                                        <p
+                                            class="text-[10px] font-bold text-emerald-700 dark:text-emerald-300 uppercase">
+                                            Biología</p>
+                                        <p class="text-[9px] text-emerald-600 dark:text-emerald-400">Mtra. Ruiz • Aula
+                                            201</p>
+                                    </div>
+                                </div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800 p-1">
+                                    <div
+                                        class="bg-emerald-100 dark:bg-emerald-900/40 border-l-4 border-emerald-500 h-full p-2 rounded shadow-sm">
+                                        <p
+                                            class="text-[10px] font-bold text-emerald-700 dark:text-emerald-300 uppercase">
+                                            Biología (Lab)</p>
+                                        <p class="text-[9px] text-emerald-600 dark:text-emerald-400">Mtra. Ruiz • Lab 02
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800 p-1">
+                                    <div
+                                        class="bg-rose-100 dark:bg-rose-900/40 border-l-4 border-rose-500 h-full p-2 rounded shadow-sm">
+                                        <p class="text-[10px] font-bold text-rose-700 dark:text-rose-300 uppercase">
+                                            Historia Univ.</p>
+                                        <p class="text-[9px] text-rose-600 dark:text-rose-400">Mtro. Lozano • Aula 110
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                            </div>
+                            <!-- Column Miercoles -->
+                            <div class="border-r border-slate-100 dark:border-slate-800 bg-primary/5">
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800 p-1">
+                                    <div
+                                        class="bg-blue-100 dark:bg-blue-900/40 border-l-4 border-blue-500 h-full p-2 rounded shadow-sm">
+                                        <p class="text-[10px] font-bold text-blue-700 dark:text-blue-300 uppercase">
+                                            Matemáticas II</p>
+                                        <p class="text-[9px] text-blue-600 dark:text-blue-400">Mtro. Sanchez • Aula 102
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800 p-1">
+                                    <div
+                                        class="bg-indigo-100 dark:bg-indigo-900/40 border-l-4 border-indigo-500 h-full p-2 rounded shadow-sm">
+                                        <p class="text-[10px] font-bold text-indigo-700 dark:text-indigo-300 uppercase">
+                                            Literatura</p>
+                                        <p class="text-[9px] text-indigo-600 dark:text-indigo-400">Mtra. Elena • Aula
+                                            305</p>
+                                    </div>
+                                </div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800 p-1">
+                                    <div
+                                        class="bg-violet-100 dark:bg-violet-900/40 border-l-4 border-violet-500 h-full p-2 rounded shadow-sm">
+                                        <p class="text-[10px] font-bold text-violet-700 dark:text-violet-300 uppercase">
+                                            Inglés V</p>
+                                        <p class="text-[9px] text-violet-600 dark:text-violet-400">Mtra. Parker • Aula
+                                            404</p>
+                                    </div>
+                                </div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800 p-1">
+                                    <div
+                                        class="bg-slate-100 dark:bg-slate-700/40 border-l-4 border-slate-500 h-full p-2 rounded shadow-sm">
+                                        <p class="text-[10px] font-bold text-slate-700 dark:text-slate-300 uppercase">
+                                            Tutoría</p>
+                                        <p class="text-[9px] text-slate-600 dark:text-slate-400">Mtro. Sanchez • Aula
+                                            102</p>
+                                    </div>
+                                </div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                            </div>
+                            <!-- Column Jueves -->
+                            <div class="border-r border-slate-100 dark:border-slate-800">
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800 p-1">
+                                    <div
+                                        class="bg-amber-100 dark:bg-amber-900/40 border-l-4 border-amber-500 h-full p-2 rounded shadow-sm">
+                                        <p class="text-[10px] font-bold text-amber-700 dark:text-amber-300 uppercase">
+                                            Física I</p>
+                                        <p class="text-[9px] text-amber-600 dark:text-amber-400">Mtro. Quiroz • Lab 01
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800 p-1">
+                                    <div
+                                        class="bg-emerald-100 dark:bg-emerald-900/40 border-l-4 border-emerald-500 h-full p-2 rounded shadow-sm">
+                                        <p
+                                            class="text-[10px] font-bold text-emerald-700 dark:text-emerald-300 uppercase">
+                                            Biología</p>
+                                        <p class="text-[9px] text-emerald-600 dark:text-emerald-400">Mtra. Ruiz • Aula
+                                            201</p>
+                                    </div>
+                                </div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800 p-1">
+                                    <div
+                                        class="bg-violet-100 dark:bg-violet-900/40 border-l-4 border-violet-500 h-full p-2 rounded shadow-sm">
+                                        <p class="text-[10px] font-bold text-violet-700 dark:text-violet-300 uppercase">
+                                            Inglés V</p>
+                                        <p class="text-[9px] text-violet-600 dark:text-violet-400">Mtra. Parker • Aula
+                                            404</p>
+                                    </div>
+                                </div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                            </div>
+                            <!-- Column Viernes -->
+                            <div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800 p-1">
+                                    <div
+                                        class="bg-blue-100 dark:bg-blue-900/40 border-l-4 border-blue-500 h-full p-2 rounded shadow-sm">
+                                        <p class="text-[10px] font-bold text-blue-700 dark:text-blue-300 uppercase">
+                                            Matemáticas II</p>
+                                        <p class="text-[9px] text-blue-600 dark:text-blue-400">Mtro. Sanchez • Aula 102
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800 p-1">
+                                    <div
+                                        class="bg-amber-100 dark:bg-amber-900/40 border-l-4 border-amber-500 h-full p-2 rounded shadow-sm">
+                                        <p class="text-[10px] font-bold text-amber-700 dark:text-amber-300 uppercase">
+                                            Física I</p>
+                                        <p class="text-[9px] text-amber-600 dark:text-amber-400">Mtro. Quiroz • Lab 01
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800 p-1">
+                                    <div
+                                        class="bg-rose-100 dark:bg-rose-900/40 border-l-4 border-rose-500 h-full p-2 rounded shadow-sm">
+                                        <p class="text-[10px] font-bold text-rose-700 dark:text-rose-300 uppercase">
+                                            Historia Univ.</p>
+                                        <p class="text-[9px] text-rose-600 dark:text-rose-400">Mtro. Lozano • Aula 110
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                                <div class="h-20 border-b border-slate-100 dark:border-slate-800"></div>
+                            </div>
+                        </div>
+                        <!-- Current Time Marker (Mock) -->
+                        <div
+                            class="absolute top-[320px] left-0 right-0 h-0.5 bg-red-500 z-10 before:content-[''] before:absolute before:left-[80px] before:top-[-4px] before:w-2 before:h-2 before:bg-red-500 before:rounded-full">
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer Stats -->
+                <div class="mt-8 grid grid-cols-1 md:grid-cols-4 gap-6">
+                    <div
+                        class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <p class="text-xs text-slate-500 uppercase font-bold tracking-wider mb-1">Clases hoy</p>
+                        <p class="text-2xl font-bold">12 <span
+                                class="text-sm font-normal text-emerald-500 ml-2">Sesiones</span></p>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <p class="text-xs text-slate-500 uppercase font-bold tracking-wider mb-1">Carga Semanal</p>
+                        <p class="text-2xl font-bold">38 <span
+                                class="text-sm font-normal text-slate-400 ml-2">Horas</span></p>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <p class="text-xs text-slate-500 uppercase font-bold tracking-wider mb-1">Aulas en uso</p>
+                        <p class="text-2xl font-bold">85% <span
+                                class="text-sm font-normal text-primary ml-2">Capacidad</span></p>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-slate-900 p-4 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <p class="text-xs text-slate-500 uppercase font-bold tracking-wider mb-1">Profesores Activos</p>
+                        <p class="text-2xl font-bold">24 <span
+                                class="text-sm font-normal text-slate-400 ml-2">Maestros</span></p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

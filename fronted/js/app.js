@@ -36,5 +36,3 @@ fetch(API_URL).then(response => response.json())
 </tr > `})
       });
       
-      
- 

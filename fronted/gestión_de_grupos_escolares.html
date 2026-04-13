@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 
-<html lang="es"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Gestión de Grupos Escolares</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
+<html lang="es">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Gestión de Grupos Escolares</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
             theme: {
@@ -31,234 +38,300 @@
             },
         }
     </script>
-<style>
+    <style>
         body {
             font-family: 'Lexend', sans-serif;
         }
+
         .material-symbols-outlined {
             font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
             vertical-align: middle;
         }
     </style>
 </head>
+
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 antialiased">
-<div class="flex h-screen overflow-hidden">
-<!-- Sidebar Navigation -->
-<aside class="w-72 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col">
-<div class="p-6 flex items-center gap-3">
-<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20">
-<span class="material-symbols-outlined text-2xl">school</span>
-</div>
-<div>
-<h1 class="text-slate-900 dark:text-white font-bold text-lg leading-tight"></h1>
-<h1 class="text-sm font-bold leading-tight">Sistema Escolar</h1>
-</div>
-</div>
-</div id ="contenedor"> 
-<script src="js/app.js"></script>
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar Navigation -->
+        <aside class="w-72 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col">
+            <div class="p-6 flex items-center gap-3">
+                <div
+                    class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/20">
+                    <span class="material-symbols-outlined text-2xl">school</span>
+                </div>
+                <div>
+                    <h1 class="text-slate-900 dark:text-white font-bold text-lg leading-tight"></h1>
+                    <h1 class="text-sm font-bold leading-tight">Sistema Escolar</h1>
+                </div>
+            </div>
+    </div id="contenedor">
+    <script src="js/app.js"></script>
 
-<nav class="flex-1 px-4 space-y-1 mt-4">
+    <nav class="flex-1 px-4 space-y-1 mt-4">
 
-<a class="flex items-center gap-3 px-4 py-3 bg-primary/10 text-primary rounded-lg transition-colors border-l-4 border-primary" href="#">
-<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">group</span>
-<span class="font-semibold text-sm">Grupos</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors group" href="#">
-    <span class="material-symbols-outlined group-hover:text-primary">meeting_room</span>
-<span class="font-medium text-sm">Salones</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors group" href="#">
-<span class="material-symbols-outlined group-hover:text-primary">person</span>
-<span class="font-medium text-sm">Maestros</span>
-</a>
-<a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors group" href="#">
-<span class="material-symbols-outlined group-hover:text-primary">calendar_today</span>
-<span class="font-medium text-sm">Horarios</span>
-</a>
+        <a class="flex items-center gap-3 px-4 py-3 bg-primary/10 text-primary rounded-lg transition-colors border-l-4 border-primary"
+            href="#">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">group</span>
+            <span class="font-semibold text-sm">Grupos</span>
+        </a>
+        <a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors group"
+            href="#">
+            <span class="material-symbols-outlined group-hover:text-primary">meeting_room</span>
+            <span class="font-medium text-sm">Salones</span>
+        </a>
+        <a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors group"
+            href="#">
+            <span class="material-symbols-outlined group-hover:text-primary">person</span>
+            <span class="font-medium text-sm">Maestros</span>
+        </a>
+        <a class="flex items-center gap-3 px-4 py-3 text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-lg transition-colors group"
+            href="#">
+            <span class="material-symbols-outlined group-hover:text-primary">calendar_today</span>
+            <span class="font-medium text-sm">Horarios</span>
+        </a>
 
-</nav>
-<div class="p-4 border-t border-slate-200 dark:border-slate-800">
-<div class="flex items-center gap-3 p-2 bg-slate-50 dark:bg-slate-800 rounded-xl">
-<div class="w-10 h-10 rounded-full bg-slate-300 overflow-hidden" data-alt="Foto de perfil del administrador" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDvBDPlZBCJ1IZ3dmkwKBVAUcrLrjUMX-LAVuaGOxCxwWKUkp4s1hBNgYKDBu3uOuXB2I5mgdreMVDQ9YtdxQte111bQ1ZC1RrrwdEoxKeCaceqXjVkf4atPWvqa_nJ2vVFFHuj_cEvSlyyc8U8vkyHogpl50s4Yi0cYQa3Vj-Me048BJVCLx1vBLe3ZR9jTXTGxkLcvhmaZ1enfFdX7vZckQS8zoME-cdleIusBQ4-Mt9dxjGjbGRcL1xWOCjKb0S3u9QArTnW4Mzw')"></div>
-<div class="flex-1 overflow-hidden">
-<p class="text-sm font-semibold truncate">Alejandra Lopez</p>
-<p class="text-xs text-slate-500 truncate">Administrador</p>
-</div>
-<button class="material-symbols-outlined text-slate-400 hover:text-red-500">logout</button>
-</div>
-</div>
-</aside>
-<!-- Main Content Area -->
-<main class="flex-1 flex flex-col overflow-hidden">
-<!-- Header Section -->
-<header class="h-20 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-8">
-<div>
-<h2 class="text-2xl font-bold text-slate-900 dark:text-white">Gestión de Grupos</h2>
-<p class="text-sm text-slate-500">Administra y organiza los grupos escolares del plantel.</p>
-</div>
-<button class="bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-lg flex items-center gap-2 font-semibold text-sm transition-all shadow-md shadow-primary/20">
-<span class="material-symbols-outlined">add</span>
-                    Agregar Grupo
-                </button>
-</header>
-<!-- Table Controls Section -->
-<section class="p-8">
-<div class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
-<div class="p-6 border-b border-slate-100 dark:border-slate-800 flex flex-wrap gap-4 items-center justify-between bg-white dark:bg-slate-900">
-<div class="relative flex-1 min-w-[300px] max-w-md">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
-<input class="w-full pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary text-sm placeholder:text-slate-400" placeholder="Buscar grupo por nombre o carrera..." type="text"/>
-</div>
-<div class="flex items-center gap-3">
-<button class="flex items-center gap-2 px-4 py-2.5 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-<span class="material-symbols-outlined text-lg">filter_list</span>
-                                Filtros
-                            </button>
-<button class="flex items-center gap-2 px-4 py-2.5 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
-<span class="material-symbols-outlined text-lg">download</span>
-                                Exportar
-                            </button>
-</div>
-</div>
-<!-- Data Table -->
-<div class="overflow-x-auto">
-<table class="w-full text-left border-collapse">
-<thead>
-<tr class="bg-slate-50/50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800">
-<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Nombre del Grupo</th>
-<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Carrera / Grado</th>
-<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-center">N° Alumnos</th>
-<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Turno</th>
-<th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">Acciones</th>
-</tr>
-</thead>
-<tbody class="divide-y divide-slate-100 dark:divide-slate-800">
-<tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/80 transition-colors group">
-<td class="px-6 py-4">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">1A</div>
-<span class="font-medium text-slate-900 dark:text-white">1° A</span>
-</div>
-</td>
-<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Ingeniería en Software</td>
-<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400 text-center">32</td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-600 border border-emerald-100">
-<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                            Matutino
-                                        </span>
-</td>
-<td class="px-6 py-4 text-right">
-<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-<button class="p-2 hover:bg-primary/10 hover:text-primary rounded-lg text-slate-400 transition-colors" title="Editar">
-<span class="material-symbols-outlined text-xl">edit_note</span>
-</button>
-<button class="p-2 hover:bg-red-50 hover:text-red-500 rounded-lg text-slate-400 transition-colors" title="Eliminar">
-<span class="material-symbols-outlined text-xl">delete</span>
-</button>
-</div>
-</td>
-</tr>
-<tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/80 transition-colors group">
-<td class="px-6 py-4">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">2B</div>
-<span class="font-medium text-slate-900 dark:text-white">2° B</span>
-</div>
-</td>
-<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Licenciatura en Administración</td>
-<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400 text-center">28</td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-600 border border-blue-100">
-<span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-                                            Vespertino
-                                        </span>
-</td>
-<td class="px-6 py-4 text-right">
-<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-<button class="p-2 hover:bg-primary/10 hover:text-primary rounded-lg text-slate-400 transition-colors">
-<span class="material-symbols-outlined text-xl">edit_note</span>
-</button>
-<button class="p-2 hover:bg-red-50 hover:text-red-500 rounded-lg text-slate-400 transition-colors">
-<span class="material-symbols-outlined text-xl">delete</span>
-</button>
-</div>
-</td>
-</tr>
-<tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/80 transition-colors group">
-<td class="px-6 py-4">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">3C</div>
-<span class="font-medium text-slate-900 dark:text-white">3° C</span>
-</div>
-</td>
-<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Ingeniería Industrial</td>
-<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400 text-center">35</td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-600 border border-emerald-100">
-<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-                                            Matutino
-                                        </span>
-</td>
-<td class="px-6 py-4 text-right">
-<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-<button class="p-2 hover:bg-primary/10 hover:text-primary rounded-lg text-slate-400 transition-colors">
-<span class="material-symbols-outlined text-xl">edit_note</span>
-</button>
-<button class="p-2 hover:bg-red-50 hover:text-red-500 rounded-lg text-slate-400 transition-colors">
-<span class="material-symbols-outlined text-xl">delete</span>
-</button>
-</div>
-</td>
-</tr>
-<tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/80 transition-colors group">
-<td class="px-6 py-4">
-<div class="flex items-center gap-3">
-<div class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">1B</div>
-<span class="font-medium text-slate-900 dark:text-white">1° B</span>
-</div>
-</td>
-<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Ingeniería en Software</td>
-<td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400 text-center">30</td>
-<td class="px-6 py-4">
-<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-600 border border-blue-100">
-<span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
-                                            Vespertino
-                                        </span>
-</td>
-<td class="px-6 py-4 text-right">
-<div class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-<button class="p-2 hover:bg-primary/10 hover:text-primary rounded-lg text-slate-400 transition-colors">
-<span class="material-symbols-outlined text-xl">edit_note</span>
-</button>
-<button class="p-2 hover:bg-red-50 hover:text-red-500 rounded-lg text-slate-400 transition-colors">
-<span class="material-symbols-outlined text-xl">delete</span>
-</button>
-</div>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<!-- Pagination Footer -->
-<div class="px-6 py-4 bg-slate-50/50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
-<p class="text-xs text-slate-500 font-medium">Mostrando 4 de 24 grupos registrados</p>
-<div class="flex items-center gap-1">
-<button class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-400 transition-colors disabled:opacity-30" disabled="">
-<span class="material-symbols-outlined">chevron_left</span>
-</button>
-<button class="w-8 h-8 rounded-lg bg-primary text-white text-xs font-bold shadow-sm shadow-primary/20">1</button>
-<button class="w-8 h-8 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-semibold transition-colors">2</button>
-<button class="w-8 h-8 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-semibold transition-colors">3</button>
-<span class="px-1 text-slate-400">...</span>
-<button class="w-8 h-8 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-semibold transition-colors">6</button>
-<button class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-400 transition-colors">
-<span class="material-symbols-outlined">chevron_right</span>
-</button>
-</div>
-</div>
-</div>
-</section>
-</main>
-</div>
-</body></html>
+    </nav>
+    <div class="p-4 border-t border-slate-200 dark:border-slate-800">
+        <div class="flex items-center gap-3 p-2 bg-slate-50 dark:bg-slate-800 rounded-xl">
+            <div class="w-10 h-10 rounded-full bg-slate-300 overflow-hidden" data-alt="Foto de perfil del administrador"
+                style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDvBDPlZBCJ1IZ3dmkwKBVAUcrLrjUMX-LAVuaGOxCxwWKUkp4s1hBNgYKDBu3uOuXB2I5mgdreMVDQ9YtdxQte111bQ1ZC1RrrwdEoxKeCaceqXjVkf4atPWvqa_nJ2vVFFHuj_cEvSlyyc8U8vkyHogpl50s4Yi0cYQa3Vj-Me048BJVCLx1vBLe3ZR9jTXTGxkLcvhmaZ1enfFdX7vZckQS8zoME-cdleIusBQ4-Mt9dxjGjbGRcL1xWOCjKb0S3u9QArTnW4Mzw')">
+            </div>
+            <div class="flex-1 overflow-hidden">
+                <p class="text-sm font-semibold truncate">Alejandra Lopez</p>
+                <p class="text-xs text-slate-500 truncate">Administrador</p>
+            </div>
+            <button class="material-symbols-outlined text-slate-400 hover:text-red-500">logout</button>
+        </div>
+    </div>
+    </aside>
+    <!-- Main Content Area -->
+    <main class="flex-1 flex flex-col overflow-hidden">
+        <!-- Header Section -->
+        <header
+            class="h-20 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-8">
+            <div>
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white">Gestión de Grupos</h2>
+                <p class="text-sm text-slate-500">Administra y organiza los grupos escolares del plantel.</p>
+            </div>
+            <button
+                class="bg-primary hover:bg-primary/90 text-white px-5 py-2.5 rounded-lg flex items-center gap-2 font-semibold text-sm transition-all shadow-md shadow-primary/20">
+                <span class="material-symbols-outlined">add</span>
+                Agregar Grupo
+            </button>
+        </header>
+        <!-- Table Controls Section -->
+        <section class="p-8">
+            <div
+                class="bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-slate-200 dark:border-slate-800 overflow-hidden">
+                <div
+                    class="p-6 border-b border-slate-100 dark:border-slate-800 flex flex-wrap gap-4 items-center justify-between bg-white dark:bg-slate-900">
+                    <div class="relative flex-1 min-w-[300px] max-w-md">
+                        <span
+                            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+                        <input
+                            class="w-full pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800 border-none rounded-lg focus:ring-2 focus:ring-primary text-sm placeholder:text-slate-400"
+                            placeholder="Buscar grupo por nombre o carrera..." type="text" />
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <button
+                            class="flex items-center gap-2 px-4 py-2.5 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                            <span class="material-symbols-outlined text-lg">filter_list</span>
+                            Filtros
+                        </button>
+                        <button
+                            class="flex items-center gap-2 px-4 py-2.5 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+                            <span class="material-symbols-outlined text-lg">download</span>
+                            Exportar
+                        </button>
+                    </div>
+                </div>
+                <!-- Data Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr
+                                class="bg-slate-50/50 dark:bg-slate-800/50 border-b border-slate-100 dark:border-slate-800">
+                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Nombre
+                                    del Grupo</th>
+                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Carrera
+                                    / Grado</th>
+                                <th
+                                    class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-center">
+                                    N° Alumnos</th>
+                                <th class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider">Turno
+                                </th>
+                                <th
+                                    class="px-6 py-4 text-xs font-bold text-slate-500 uppercase tracking-wider text-right">
+                                    Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                            <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/80 transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">
+                                            1A</div>
+                                        <span class="font-medium text-slate-900 dark:text-white">1° A</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Ingeniería en Software
+                                </td>
+                                <td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400 text-center">32</td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-600 border border-emerald-100">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                        Matutino
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <div
+                                        class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button
+                                            class="p-2 hover:bg-primary/10 hover:text-primary rounded-lg text-slate-400 transition-colors"
+                                            title="Editar">
+                                            <span class="material-symbols-outlined text-xl">edit_note</span>
+                                        </button>
+                                        <button
+                                            class="p-2 hover:bg-red-50 hover:text-red-500 rounded-lg text-slate-400 transition-colors"
+                                            title="Eliminar">
+                                            <span class="material-symbols-outlined text-xl">delete</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/80 transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">
+                                            2B</div>
+                                        <span class="font-medium text-slate-900 dark:text-white">2° B</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Licenciatura en
+                                    Administración</td>
+                                <td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400 text-center">28</td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-600 border border-blue-100">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                                        Vespertino
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <div
+                                        class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button
+                                            class="p-2 hover:bg-primary/10 hover:text-primary rounded-lg text-slate-400 transition-colors">
+                                            <span class="material-symbols-outlined text-xl">edit_note</span>
+                                        </button>
+                                        <button
+                                            class="p-2 hover:bg-red-50 hover:text-red-500 rounded-lg text-slate-400 transition-colors">
+                                            <span class="material-symbols-outlined text-xl">delete</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/80 transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">
+                                            3C</div>
+                                        <span class="font-medium text-slate-900 dark:text-white">3° C</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Ingeniería Industrial
+                                </td>
+                                <td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400 text-center">35</td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-600 border border-emerald-100">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                        Matutino
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <div
+                                        class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button
+                                            class="p-2 hover:bg-primary/10 hover:text-primary rounded-lg text-slate-400 transition-colors">
+                                            <span class="material-symbols-outlined text-xl">edit_note</span>
+                                        </button>
+                                        <button
+                                            class="p-2 hover:bg-red-50 hover:text-red-500 rounded-lg text-slate-400 transition-colors">
+                                            <span class="material-symbols-outlined text-xl">delete</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-50/80 dark:hover:bg-slate-800/80 transition-colors group">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div
+                                            class="w-8 h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">
+                                            1B</div>
+                                        <span class="font-medium text-slate-900 dark:text-white">1° B</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400">Ingeniería en Software
+                                </td>
+                                <td class="px-6 py-4 text-sm text-slate-600 dark:text-slate-400 text-center">30</td>
+                                <td class="px-6 py-4">
+                                    <span
+                                        class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-600 border border-blue-100">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+                                        Vespertino
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4 text-right">
+                                    <div
+                                        class="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button
+                                            class="p-2 hover:bg-primary/10 hover:text-primary rounded-lg text-slate-400 transition-colors">
+                                            <span class="material-symbols-outlined text-xl">edit_note</span>
+                                        </button>
+                                        <button
+                                            class="p-2 hover:bg-red-50 hover:text-red-500 rounded-lg text-slate-400 transition-colors">
+                                            <span class="material-symbols-outlined text-xl">delete</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Pagination Footer -->
+                <div
+                    class="px-6 py-4 bg-slate-50/50 dark:bg-slate-800/50 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+                    <p class="text-xs text-slate-500 font-medium">Mostrando 4 de 24 grupos registrados</p>
+                    <div class="flex items-center gap-1">
+                        <button
+                            class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-400 transition-colors disabled:opacity-30"
+                            disabled="">
+                            <span class="material-symbols-outlined">chevron_left</span>
+                        </button>
+                        <button
+                            class="w-8 h-8 rounded-lg bg-primary text-white text-xs font-bold shadow-sm shadow-primary/20">1</button>
+                        <button
+                            class="w-8 h-8 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-semibold transition-colors">2</button>
+                        <button
+                            class="w-8 h-8 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-semibold transition-colors">3</button>
+                        <span class="px-1 text-slate-400">...</span>
+                        <button
+                            class="w-8 h-8 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-700 text-xs font-semibold transition-colors">6</button>
+                        <button
+                            class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-400 transition-colors">
+                            <span class="material-symbols-outlined">chevron_right</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    </div>
+</body>
+
+</html>
