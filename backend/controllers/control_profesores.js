@@ -1,7 +1,7 @@
 const profesorModel = require('../models/model_profesores');
 
 class ProfesorController { 
-    static async obtenerProfesores(req, res) {
+    static async obtenerProfesores(res) {
         try{
             const profesores = await profesorModel.obtenerProfesores();
         

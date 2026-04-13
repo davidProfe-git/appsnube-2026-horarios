@@ -1,6 +1,6 @@
 -- =====================================
 -- CREAR BASE DE DATOS
--- =====================================
+-- =====================================s
 CREATE DATABASE IF NOT EXISTS gestion_horarios;
 USE gestion_horarios;
 
