@@ -1,8 +1,11 @@
 const express = require("express")
+const cors = require('cors')
 const aplicacion = express()
 const profesorControlador = require('./controllers/profesores-controller')
 const horariosControlador = require('./controllers/calendario-controller')
+
 //Router
+aplicacion.use(cors())
 aplicacion.get('/profesor',(peticion,respuesta)=>{
     profesorControlador.obtenerProfesor(respuesta)
 })
